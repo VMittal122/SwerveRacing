@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d60505",
+                        "background-light": "#f8f5f5",
+                        "background-dark": "#230f0f",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+    <title>Meet the Team - Swerve Racing</title>
+    <style>
+        .skew-slant {
+            transform: skewX(-12deg);
+        }
+
+        .skew-slant-reverse {
+            transform: skewX(12deg);
+        }
+
+        .team-card {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .team-card.hidden-card {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+
+        <!-- Navigation -->
+        <header
+            class="sticky top-0 z-50 flex items-center justify-between border-b border-primary/20 bg-background-dark/80 backdrop-blur-md px-4 py-4 md:px-20">
+            <div class="flex items-center gap-4">
+                <img alt="Swerve Racing Logo" class="h-8 md:h-10 w-auto" src="Swerve.png" />
+                <h2 class="text-lg md:text-xl font-bold tracking-tighter uppercase italic">Swerve <span
+                        class="text-primary">Racing</span></h2>
+            </div>
+            <!-- Mobile Menu Toggle -->
+            <button class="md:hidden text-primary"
+                onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <span class="material-symbols-outlined text-3xl">menu</span>
+            </button>
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex flex-1 justify-end gap-10">
+                <div class="flex items-center gap-6 lg:gap-8">
+                    <a class="text-xs lg:text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors"
+                        href="Home.html">Home</a>
+                    <a class="text-xs lg:text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors"
+                        href="About_Us.html">About Us</a>
+                    <a class="text-xs lg:text-sm font-bold uppercase tracking-widest text-primary transition-colors"
+                        href="Team.html">Meet the Team</a>
+                    <a class="text-xs lg:text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors"
+                        href="Sponsor.html">Sponsor Us</a>
+                    <a class="text-xs lg:text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors"
+                        href="Contact.html">Contact Us</a>
+                </div>
+                <a href="https://www.formula1.com/" target="_blank" rel="noopener noreferrer"
+                    class="bg-primary hover:bg-primary/80 text-white px-6 py-2 skew-slant">
+                    <span class="block skew-slant-reverse text-xs font-black uppercase italic whitespace-nowrap">Live
+                        Race</span>
+                </a>
+            </nav>
+        </header>
+
+        <!-- Mobile Menu Overlay -->
+        <div class="hidden fixed inset-0 z-[60] bg-background-dark/95 backdrop-blur-xl p-8" id="mobile-menu">
+            <div class="flex justify-end mb-8">
+                <button class="text-primary" onclick="document.getElementById('mobile-menu').classList.add('hidden')">
+                    <span class="material-symbols-outlined text-4xl">close</span>
+                </button>
+            </div>
+            <nav class="flex flex-col gap-6 items-center text-center">
+                <a class="text-2xl font-black uppercase italic tracking-tighter hover:text-primary transition-colors"
+                    href="Home.html" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Home</a>
+                <a class="text-2xl font-black uppercase italic tracking-tighter hover:text-primary transition-colors"
+                    href="About_Us.html" onclick="document.getElementById('mobile-menu').classList.add('hidden')">About
+                    Us</a>
+                <a class="text-2xl font-black uppercase italic tracking-tighter text-primary" href="Team.html"
+                    onclick="document.getElementById('mobile-menu').classList.add('hidden')">Meet the Team</a>
+                <a class="text-2xl font-black uppercase italic tracking-tighter hover:text-primary transition-colors"
+                    href="Sponsor.html" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Sponsor
+                    Us</a>
+                <a class="text-2xl font-black uppercase italic tracking-tighter hover:text-primary transition-colors"
+                    href="Contact.html" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact
+                    Us</a>
+                <button class="mt-8 bg-primary text-white px-10 py-4 skew-slant w-full">
+                    <span class="block skew-slant-reverse font-black uppercase italic">Live Race</span>
+                </button>
+            </nav>
+        </div>
+
+        <main class="flex-1 max-w-7xl mx-auto w-full px-4 md:px-6 py-8 md:py-12">
+            <!-- Hero Section -->
+            <div class="mb-8 md:mb-12">
+                <div class="relative w-full min-h-[400px] md:h-80 rounded-xl overflow-hidden mb-8 group">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                        style="background-image: linear-gradient(to right, rgba(35, 15, 15, 0.95), rgba(35, 15, 15, 0.4)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuCSf0qAmZcle5wW33D_xrPBgxSN0GONmpKjekV7idIJnF2-Hte7PkfIAm5h-NPc_JREFE-2Q54cTQPpU4IyesdAmquVtG59Mm0xEjFkgNXabnhxoxVFQu3EuufKBLCqVXVkXaD-fgwuJh3vIE_4Xlpv-eCK32QyA6JarzElqZbj9YGFU29S5QK12_AefECHHJifVmyvQAm-vqe-UmmtlQi5OgFM55ynH_ZRG8vLi888fviW7HFvdl43lIiDExjHi8Te5pMrcFKXHQ')">
+                    </div>
+                    <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+                        <div>
+                            <span
+                                class="bg-primary px-3 py-1 text-[10px] md:text-xs font-bold uppercase tracking-widest text-white mb-3 md:mb-4 inline-block rounded">Meet
+                                the Elite</span>
+                            <h1
+                                class="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-white leading-tight">
+                                The Minds Behind <br class="hidden sm:block" /><span class="text-primary">the
+                                    Machine</span>
+                            </h1>
+                            <p class="mt-4 text-slate-300 max-w-2xl text-base md:text-lg">A driven collective of
+                                engineers, designers, and strategists united by one goal — taking Swerve Racing to the
+                                global stage.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Filter Tabs -->
+                <div class="flex border-b border-primary/20 gap-4 md:gap-8 overflow-x-auto pb-px no-scrollbar"
+                    id="filter-tabs">
+                    <button data-filter="all" onclick="filterTeam(this)"
+                        class="filter-btn border-b-2 border-primary text-primary pb-4 px-2 text-xs md:text-sm font-bold uppercase tracking-wider whitespace-nowrap">All
+                        Team</button>
+                    <button data-filter="management" onclick="filterTeam(this)"
+                        class="filter-btn border-b-2 border-transparent text-slate-500 hover:text-primary pb-4 px-2 text-xs md:text-sm font-bold uppercase tracking-wider transition-colors whitespace-nowrap">Management</button>
+                    <button data-filter="engineering" onclick="filterTeam(this)"
+                        class="filter-btn border-b-2 border-transparent text-slate-500 hover:text-primary pb-4 px-2 text-xs md:text-sm font-bold uppercase tracking-wider transition-colors whitespace-nowrap">Engineering</button>
+                    <button data-filter="design" onclick="filterTeam(this)"
+                        class="filter-btn border-b-2 border-transparent text-slate-500 hover:text-primary pb-4 px-2 text-xs md:text-sm font-bold uppercase tracking-wider transition-colors whitespace-nowrap">Design</button>
+                    <button data-filter="strategy" onclick="filterTeam(this)"
+                        class="filter-btn border-b-2 border-transparent text-slate-500 hover:text-primary pb-4 px-2 text-xs md:text-sm font-bold uppercase tracking-wider transition-colors whitespace-nowrap">Strategy</button>
+                </div>
+            </div>
+
+            <!-- Team Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+
+                <!-- Card 1: Maalvikaa Sharma -->
+                <div class="team-card group bg-primary/5 border border-primary/10 rounded-xl overflow-hidden hover:border-primary transition-all flex flex-col"
+                    data-category="management">
+                    <div class="h-64 md:h-72 overflow-hidden relative">
+                        <img alt="Maalvikaa Sharma"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            src="maalvikaa.jpeg" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-background-dark to-transparent opacity-60">
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                            <p class="text-primary font-bold text-[10px] uppercase tracking-widest">Management</p>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl md:text-2xl font-bold uppercase tracking-tight">Maalvikaa Sharma</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm md:text-base font-medium mb-3 md:mb-4">Team
+                            Principle</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-6 flex-1">Leadership excellence, team
+                            coordination, design and sponsorship, and sustainable planning. Skilled in AutoCAD, Figma,
+                            Content Creation, Software Design, and Aerospace Engineering.</p>
+                        <div class="flex gap-4">
+                            <a class="text-primary hover:text-primary/70 transition-colors" href="#"><span
+                                    class="material-symbols-outlined text-xl">link</span></a>
+                            <a class="text-primary hover:text-primary/70 transition-colors" href="#"><span
+                                    class="material-symbols-outlined text-xl">mail</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Vardaan Mittal -->
+                <div class="team-card group bg-primary/5 border border-primary/10 rounded-xl overflow-hidden hover:border-primary transition-all flex flex-col"
+                    data-category="engineering">
+                    <div class="h-64 md:h-72 overflow-hidden relative">
+                        <img alt="Vardaan Mittal"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            src="vardaan.png" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-background-dark to-transparent opacity-60">
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                            <p class="text-primary font-bold text-[10px] uppercase tracking-widest">Engineering</p>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl md:text-2xl font-bold uppercase tracking-tight">Vardaan Mittal</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm md:text-base font-medium mb-3 md:mb-4">
+                            Manufacturing & Engineering Lead (Team Head) </p>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-6 flex-1">Expert in CAD/CAM, CFD
+                            (Computational Fluid Dynamics), Engineering, and Manufacturing. Proficient in AutoCAD,
+                            Fusion 360, SolidWorks, Shapr 3D, UltiMaker Cura, Ansys, and MatLab.</p>
+                        <div class="flex gap-4">
+                            <a class="text-primary hover:text-primary/70 transition-colors" href="#"><span
+                                    class="material-symbols-outlined text-xl">link</span></a>
+                            <a class="text-primary hover:text-primary/70 transition-colors" href="#"><span
+                                    class="material-symbols-outlined text-xl">mail</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Svanik Ghai -->
+                <div class="team-card group bg-primary/5 border border-primary/10 rounded-xl overflow-hidden hover:border-primary transition-all flex flex-col"
+                    data-category="strategy">
+                    <div class="h-64 md:h-72 overflow-hidden relative">
+                        <img alt="Svanik Ghai"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            src="svanik.png" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-background-dark to-transparent opacity-60">
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                            <p class="text-primary font-bold text-[10px] uppercase tracking-widest">Strategy</p>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl md:text-2xl font-bold uppercase tracking-tight">Svanik Ghai</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm md:text-base font-medium mb-3 md:mb-4">
+                            Sponsorship & Enterprise Lead</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-6 flex-1">Has raised over ₹3.5 lakhs.
+                            Worked with companies across energy, education, entertainment, finance, and the food
+                            industry. Led his team to the Innovation & Thinking nomination at nationals.</p>
+                        <div class="flex gap-4">
+                            <a class="text-primary hover:text-primary/70 transition-colors" href="#"><span
+                                    class="material-symbols-outlined text-xl">link</span></a>
+                            <a class="text-primary hover:text-primary/70 transition-colors" href="#"><span
+                                    class="material-symbols-outlined text-xl">mail</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Namish Nahar -->
+                <div class="team-card group bg-primary/5 border border-primary/10 rounded-xl overflow-hidden hover:border-primary transition-all flex flex-col"
+                    data-category="engineering">
+                    <div class="h-64 md:h-72 overflow-hidden relative">
+                        <img alt="Namish Nahar"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            src="namish.png" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-background-dark to-transparent opacity-60">
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                            <p class="text-primary font-bold text-[10px] uppercase tracking-widest">Engineering</p>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl md:text-2xl font-bold uppercase tracking-tight">Namish Nahar</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm md:text-base font-medium mb-3 md:mb-4">
+                            Design & Aerodynamics Head</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-6 flex-1">Specialist in CAD, CFD,
+                            Engineering, and Aerodynamics. Proficient in AutoCAD, Fusion 360, Shapr3D, Cura, OpenFOAM,
+                            and Python for software design and data analysis.</p>
+                        <div class="flex gap-4">
+                            <a class="text-primary hover:text-primary/70 transition-colors" href="#"><span
+                                    class="material-symbols-outlined text-xl">link</span></a>
+                            <a class="text-primary hover:text-primary/70 transition-colors" href="#"><span
+                                    class="material-symbols-outlined text-xl">mail</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5: Divyansh Rathi -->
+                <div class="team-card group bg-primary/5 border border-primary/10 rounded-xl overflow-hidden hover:border-primary transition-all flex flex-col"
+                    data-category="design">
+                    <div class="h-64 md:h-72 overflow-hidden relative">
+                        <img alt="Divyansh Rathi"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            src="divyansh.png" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-background-dark to-transparent opacity-60">
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                            <p class="text-primary font-bold text-[10px] uppercase tracking-widest">Design</p>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl md:text-2xl font-bold uppercase tracking-tight">Divyansh Rathi</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm md:text-base font-medium mb-3 md:mb-4">
+                            Graphic Design Head</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-6 flex-1">Passionate designer with a
+                            natural sense of style, responsible for Swerve Racing's visual identity. Skilled in Adobe
+                            Illustrator, Figma, and Canva.</p>
+                        <div class="flex gap-4">
+                            <a class="text-primary hover:text-primary/70 transition-colors" href="#"><span
+                                    class="material-symbols-outlined text-xl">link</span></a>
+                            <a class="text-primary hover:text-primary/70 transition-colors" href="#"><span
+                                    class="material-symbols-outlined text-xl">mail</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6: Kabir Bansal -->
+                <div class="team-card group bg-primary/5 border border-primary/10 rounded-xl overflow-hidden hover:border-primary transition-all flex flex-col"
+                    data-category="strategy">
+                    <div class="h-64 md:h-72 overflow-hidden relative">
+                        <img alt="Kabir Bansal"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            src="kabir.png" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-background-dark to-transparent opacity-60">
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                            <p class="text-primary font-bold text-[10px] uppercase tracking-widest">Strategy</p>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl md:text-2xl font-bold uppercase tracking-tight">Kabir Bansal</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm md:text-base font-medium mb-3 md:mb-4">
+                            Sustainability Head</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-6 flex-1">A true advocate for the
+                            environment with a deep connection to nature. Has worked with over 5 NGOs toward a more
+                            sustainable earth, with in-depth knowledge on flora and fauna.</p>
+                        <div class="flex gap-4">
+                            <a class="text-primary hover:text-primary/70 transition-colors" href="#"><span
+                                    class="material-symbols-outlined text-xl">link</span></a>
+                            <a class="text-primary hover:text-primary/70 transition-colors" href="#"><span
+                                    class="material-symbols-outlined text-xl">mail</span></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Join the Team CTA -->
+            <div
+                class="mt-12 md:mt-20 p-8 md:p-12 bg-primary/10 border-2 border-dashed border-primary/30 rounded-xl text-center">
+                <h2 class="text-2xl md:text-3xl font-bold uppercase tracking-tight mb-4">Want to Join the Grid?</h2>
+                <p class="text-sm md:text-base text-slate-500 dark:text-slate-400 max-w-xl mx-auto mb-8">We are always
+                    looking for the brightest minds in engineering, data science, and design to help us reach the next
+                    podium.</p>
+                <a href="https://forms.gle/SaXDYif6Yu13hb948" target="_blank" rel="noopener noreferrer"
+                    class="w-full sm:w-auto bg-primary text-white font-bold uppercase tracking-widest px-8 py-3 rounded hover:bg-primary/90 transition-colors text-center inline-block">View
+                    Open Positions</a>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="border-t border-primary/10 py-12 px-6 lg:px-20 bg-background-light dark:bg-background-dark">
+            <div class="flex flex-col lg:flex-row justify-between items-center gap-8">
+                <div class="flex items-center gap-2">
+                    <div class="size-6 text-primary">
+                        <svg fill="currentColor" viewbox="0 0 48 48">
+                            <path
+                                d="M36.7273 44C33.9891 44 31.6043 39.8386 30.3636 33.69C29.123 39.8386 26.7382 44 24 44C21.2618 44 18.877 39.8386 17.6364 33.69C16.3957 39.8386 14.0109 44 11.2727 44C7.25611 44 4 35.0457 4 24C4 12.9543 7.25611 4 11.2727 4C14.0109 4 16.3957 8.16144 17.6364 14.31C18.877 8.16144 21.2618 4 24 4C26.7382 4 29.123 8.16144 30.3636 14.31C31.6043 8.16144 33.9891 4 36.7273 4C40.7439 4 44 12.9543 44 24C44 35.0457 40.7439 44 36.7273 44Z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h2 class="text-lg font-bold tracking-tighter uppercase">Swerve Racing</h2>
+                </div>
+                <div class="flex flex-wrap justify-center gap-4 md:gap-8">
+                    <a class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-primary transition-colors"
+                        href="#">Privacy Policy</a>
+                    <a class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-primary transition-colors"
+                        href="#">Terms of Service</a>
+                    <a class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-primary transition-colors"
+                        href="#">Media Kit</a>
+                </div>
+                <p class="text-[10px] md:text-xs text-slate-500 text-center">© 2026 Swerve Racing. Swerve to Survive!
+                </p>
+            </div>
+        </footer>
+    </div>
+    <script>
+        function filterTeam(clickedBtn) {
+            const filter = clickedBtn.getAttribute('data-filter');
+
+            // Update button styles
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('border-primary', 'text-primary');
+                btn.classList.add('border-transparent', 'text-slate-500');
+            });
+            clickedBtn.classList.remove('border-transparent', 'text-slate-500');
+            clickedBtn.classList.add('border-primary', 'text-primary');
+
+            // Show/hide cards
+            document.querySelectorAll('.team-card').forEach(card => {
+                if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                    card.classList.remove('hidden-card');
+                } else {
+                    card.classList.add('hidden-card');
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

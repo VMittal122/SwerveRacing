@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d60505",
+                        "background-light": "#f8f5f5",
+                        "background-dark": "#230f0f",
+                    },
+                    fontFamily: { "display": ["Space Grotesk"] },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .skew-slant {
+            transform: skewX(-12deg);
+        }
+
+        .skew-slant-reverse {
+            transform: skewX(12deg);
+        }
+
+        .video-overlay {
+            background: linear-gradient(to right, rgba(35, 15, 15, 0.9) 0%, rgba(35, 15, 15, 0.6) 40%, rgba(35, 15, 15, 0.2) 100%);
+        }
+
+        .upload-zone {
+            border: 2px dashed rgba(214, 5, 5, 0.3);
+            transition: all 0.2s;
+        }
+
+        .upload-zone:hover,
+        .upload-zone.drag-over {
+            border-color: #d60505;
+            background: rgba(214, 5, 5, 0.05);
+        }
+
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-x-hidden">
+    <div class="relative flex min-h-screen w-full flex-col">
+
+        <!-- Navigation -->
+        <header
+            class="sticky top-0 z-50 flex items-center justify-between border-b border-primary/20 bg-background-dark/80 backdrop-blur-md px-4 py-4 md:px-20">
+            <div class="flex items-center gap-4">
+                <img alt="Swerve Racing Logo" class="h-8 md:h-10 w-auto" src="Swerve.png" />
+                <h2 class="text-lg md:text-xl font-bold tracking-tighter uppercase italic">Swerve <span
+                        class="text-primary">Racing</span></h2>
+            </div>
+            <button class="md:hidden text-primary"
+                onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <span class="material-symbols-outlined text-3xl">menu</span>
+            </button>
+            <nav class="hidden md:flex flex-1 justify-end gap-10">
+                <div class="flex items-center gap-6 lg:gap-8">
+                    <a class="text-xs lg:text-sm font-bold uppercase tracking-widest text-primary transition-colors"
+                        href="Home.html">Home</a>
+                    <a class="text-xs lg:text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors"
+                        href="About_Us.html">About Us</a>
+                    <a class="text-xs lg:text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors"
+                        href="Team.html">Meet the Team</a>
+                    <a class="text-xs lg:text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors"
+                        href="Sponsor.html">Sponsor Us</a>
+                    <a class="text-xs lg:text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors"
+                        href="Contact.html">Contact Us</a>
+                </div>
+                <a href="https://www.formula1.com/" target="_blank" rel="noopener noreferrer"
+                    class="bg-primary hover:bg-primary/80 text-white px-6 py-2 skew-slant">
+                    <span class="block skew-slant-reverse text-xs font-black uppercase italic whitespace-nowrap">Live
+                        Race</span>
+                </a>
+            </nav>
+        </header>
+
+        <!-- Mobile Menu -->
+        <div class="hidden fixed inset-0 z-[60] bg-background-dark/95 backdrop-blur-xl p-8" id="mobile-menu">
+            <div class="flex justify-end mb-8">
+                <button class="text-primary" onclick="document.getElementById('mobile-menu').classList.add('hidden')">
+                    <span class="material-symbols-outlined text-4xl">close</span>
+                </button>
+            </div>
+            <nav class="flex flex-col gap-6 items-center text-center">
+                <a class="text-2xl font-black uppercase italic tracking-tighter text-primary" href="Home.html"
+                    onclick="document.getElementById('mobile-menu').classList.add('hidden')">Home</a>
+                <a class="text-2xl font-black uppercase italic tracking-tighter hover:text-primary transition-colors"
+                    href="About_Us.html" onclick="document.getElementById('mobile-menu').classList.add('hidden')">About
+                    Us</a>
+                <a class="text-2xl font-black uppercase italic tracking-tighter hover:text-primary transition-colors"
+                    href="Team.html" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Meet the
+                    Team</a>
+                <a class="text-2xl font-black uppercase italic tracking-tighter hover:text-primary transition-colors"
+                    href="Sponsor.html" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Sponsor
+                    Us</a>
+                <a class="text-2xl font-black uppercase italic tracking-tighter hover:text-primary transition-colors"
+                    href="Contact.html" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact
+                    Us</a>
+                <a href="https://www.formula1.com/" target="_blank" rel="noopener noreferrer"
+                    class="mt-8 bg-primary text-white px-10 py-4 skew-slant w-full text-center block">
+                    <span class="block skew-slant-reverse font-black uppercase italic">Live Race</span>
+                </a>
+            </nav>
+        </div>
+
+        <main class="flex-1">
+
+            <!-- Hero -->
+            <section class="relative w-full overflow-hidden min-h-[70vh] md:min-h-[85vh] flex items-center">
+                <div class="absolute inset-0 z-0">
+                    <div class="absolute inset-0 video-overlay z-10"></div>
+                    <video autoplay class="w-full h-full object-cover grayscale-[0.2] pointer-events-none" loop muted
+                        playsinline>
+                        <source src="background-video.mp4" type="video/mp4" />
+                    </video>
+                </div>
+                <div class="relative z-20 px-6 md:px-20 max-w-4xl py-20">
+                    <div
+                        class="inline-block bg-primary text-white text-[10px] md:text-xs font-black uppercase px-3 py-1 mb-4 md:mb-6 skew-slant">
+                        <span class="block skew-slant-reverse italic tracking-widest">Est. 2026</span>
+                    </div>
+                    <h1 class="text-5xl md:text-8xl font-black leading-[0.9] tracking-tighter uppercase italic mb-6">
+                        Speed into <br />
+                        <span class="text-transparent border-t-2 border-b-2 border-primary py-2"
+                            style="-webkit-text-stroke: 1px #d60505;">The Future</span>
+                    </h1>
+                    <p class="text-base md:text-xl text-slate-300 max-w-xl mb-10 leading-relaxed drop-shadow-lg">
+                        Experience the pinnacle of F1-style performance and innovation. We aren't just racing; we're
+                        redefining velocity.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="Contact.html"
+                            class="bg-primary hover:bg-red-700 text-white px-8 md:px-10 py-4 font-black uppercase italic tracking-tighter text-base md:text-lg skew-slant text-center">
+                            <span class="block skew-slant-reverse">Join the Pit Crew</span>
+                        </a>
+                        <a href="About_Us.html"
+                            class="border-2 border-white/20 hover:border-primary text-white px-8 md:px-10 py-4 font-black uppercase italic tracking-tighter text-base md:text-lg skew-slant transition-colors text-center">
+                            <span class="block skew-slant-reverse">Our Cars</span>
+                        </a>
+                    </div>
+                </div>
+                <div
+                    class="absolute bottom-0 right-0 w-1/3 h-full bg-primary/10 skew-slant translate-x-20 z-0 hidden lg:block">
+                </div>
+            </section>
+
+            <!-- News -->
+            <section class="py-16 md:py-20 px-6 md:px-20 bg-background-dark">
+                <div
+                    class="flex flex-col md:flex-row md:items-end justify-between mb-12 border-l-8 border-primary pl-6 gap-4">
+                    <div>
+                        <span class="text-primary font-bold uppercase tracking-[0.3em] text-xs md:text-sm">Update
+                            Center</span>
+                        <h2 class="text-3xl md:text-4xl font-black uppercase italic tracking-tighter">Latest News</h2>
+                    </div>
+                    <a class="text-sm font-bold uppercase tracking-widest text-primary flex items-center gap-2 hover:gap-4 transition-all"
+                        href="#">
+                        View All <span class="material-symbols-outlined">trending_flat</span>
+                    </a>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                    <div class="group cursor-pointer">
+                        <div
+                            class="relative aspect-video overflow-hidden mb-4 border-b-4 border-transparent group-hover:border-primary transition-all">
+                            <img alt="Grand Prix Victory"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4zSGsXHpHg2YNjoUR-vvJa3Hl7z9HubLLX7hkDVLj7jH-HdPWBCkHQs9peImEFtahPXOqz8A0FdRJdXB1IbH1whNR8ecbHSoLd0xrkNy90TM8KetVxjKXaO0jfl3eE3yRAV1p3aLDi7W4r3wn4Itr6EwExlGKE5phxVdeVndGbjCbIFFYMHcL-XHA1nrciSthu_-LmY7at7I_7NHoDxtNO49thPIhg_B5UN6i4Nj41sEngJ9xkzTuMYOKrqVFvwND2swo9edIvA" />
+                            <div
+                                class="absolute top-2 right-2 bg-primary text-white text-[10px] font-bold px-2 py-1 skew-slant">
+                                <span class="block skew-slant-reverse">COMPETITION</span>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors uppercase italic">
+                            Regional Rounds 2026 - April</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Exciting new Stem Racing India 2026-2027
+                            season ahead. See you in April! </p>
+                    </div>
+                    <div class="group cursor-pointer">
+                        <div
+                            class="relative aspect-video overflow-hidden mb-4 border-b-4 border-transparent group-hover:border-primary transition-all">
+                            <img alt="Lab Innovation"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                src="carbon.png" />
+                            <div
+                                class="absolute top-2 right-2 bg-primary text-white text-[10px] font-bold px-2 py-1 skew-slant">
+                                <span class="block skew-slant-reverse">TECH</span>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors uppercase italic">
+                            Swerve Innovation Lab</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Introducing the next generation of aerodynamic carbon fiber aero parts for the 2026-2027
+                            season.
+                        </p>
+                    </div>
+                    <div class="group cursor-pointer sm:col-span-2 md:col-span-1">
+                        <div
+                            class="relative aspect-video overflow-hidden mb-4 border-b-4 border-transparent group-hover:border-primary transition-all">
+                            <img alt="Season Preview"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                src="Athena.png" />
+                            <div
+                                class="absolute top-2 right-2 bg-primary text-white text-[10px] font-bold px-2 py-1 skew-slant">
+                                <span class="block skew-slant-reverse">EVENT</span>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors uppercase italic">
+                            New Sponsors - Athena Education</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">We are excited to announce our new partnership
+                            with Athena Education!.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mission -->
+            <section
+                class="py-20 md:py-24 bg-background-light dark:bg-background-dark border-y border-white/5 relative overflow-hidden">
+                <div class="absolute right-0 top-0 h-full w-full md:w-1/2 opacity-5 pointer-events-none">
+                    <span
+                        class="text-[150px] md:text-[300px] font-black italic tracking-tighter uppercase select-none leading-none">SPEED</span>
+                </div>
+                <div class="px-6 md:px-20 relative z-10">
+                    <div class="max-w-3xl mb-12 md:mb-16">
+                        <h2 class="text-3xl md:text-5xl font-black uppercase italic tracking-tighter mb-6">Our <span
+                                class="text-primary">Mission</span></h2>
+                        <p class="text-base md:text-xl text-slate-400 leading-relaxed font-medium">Pushing the
+                            boundaries of automotive engineering and human endurance. We race to innovate, we innovate
+                            to win, and we win to lead the automotive future.</p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                        <div
+                            class="p-8 border-l-2 border-primary bg-background-dark/50 hover:bg-primary/5 transition-all skew-slant group">
+                            <div class="skew-slant-reverse">
+                                <span class="material-symbols-outlined text-primary text-4xl mb-4">bolt</span>
+                                <h4 class="text-xl font-bold uppercase italic mb-2">Performance</h4>
+                                <p class="text-sm text-slate-400">Engineered for maximum velocity and power output
+                                    efficiency.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="p-8 border-l-2 border-primary bg-background-dark/50 hover:bg-primary/5 transition-all skew-slant group">
+                            <div class="skew-slant-reverse">
+                                <span class="material-symbols-outlined text-primary text-4xl mb-4">target</span>
+                                <h4 class="text-xl font-bold uppercase italic mb-2">Precision</h4>
+                                <p class="text-sm text-slate-400">Millimeter-perfect handling and aerodynamic
+                                    optimization.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="p-8 border-l-2 border-primary bg-background-dark/50 hover:bg-primary/5 transition-all skew-slant group sm:col-span-2 md:col-span-1">
+                            <div class="skew-slant-reverse">
+                                <span class="material-symbols-outlined text-primary text-4xl mb-4">rocket_launch</span>
+                                <h4 class="text-xl font-bold uppercase italic mb-2">Future-Ready</h4>
+                                <p class="text-sm text-slate-400">Sustainable hybrid racing technology for the next
+                                    generation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Support CTA -->
+            <section class="py-16 md:py-20 px-6 md:px-20 text-center relative overflow-hidden bg-primary">
+                <div class="absolute inset-0 opacity-10">
+                    <div
+                        class="h-full w-full bg-[repeating-linear-gradient(45deg,transparent,transparent_20px,white_20px,white_21px)]">
+                    </div>
+                </div>
+                <div class="relative z-10 max-w-2xl mx-auto">
+                    <h2 class="text-3xl md:text-6xl font-black uppercase italic text-white mb-6 tracking-tighter">
+                        Support the Team</h2>
+                    <p class="text-white/80 text-sm md:text-lg mb-10 font-bold uppercase tracking-widest">Become part of
+                        the Swerve Racing Legacy</p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <button onclick="openDonateModal()"
+                            class="bg-white text-primary px-8 md:px-12 py-4 md:py-5 font-black uppercase italic tracking-tighter text-lg md:text-xl skew-slant hover:scale-105 transition-transform">
+                            <span class="block skew-slant-reverse">Donate Now</span>
+                        </button>
+                        <a href="Contact.html"
+                            class="border-2 border-white text-white px-8 md:px-12 py-4 md:py-5 font-black uppercase italic tracking-tighter text-lg md:text-xl skew-slant hover:bg-white hover:text-primary transition-all text-center block">
+                            <span class="block skew-slant-reverse">Partner with us</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══ DONATION MODAL ═══ -->
+            <div id="donate-modal"
+                class="fixed inset-0 z-[100] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+                <div onclick="closeDonateModal()" class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+                <div id="modal-card"
+                    class="relative w-full max-w-lg bg-[#1a0808] border border-primary/30 rounded-2xl overflow-hidden shadow-2xl shadow-primary/20 scale-95 transition-transform duration-300 max-h-[90vh] overflow-y-auto">
+
+                    <!-- Header -->
+                    <div class="bg-primary px-6 py-5 flex items-center justify-between sticky top-0 z-10">
+                        <div>
+                            <p class="text-white/70 text-[10px] font-bold uppercase tracking-[0.3em]">Swerve Racing</p>
+                            <h2 class="text-white text-xl font-black uppercase italic tracking-tighter"
+                                id="modal-title">Support the Mission</h2>
+                        </div>
+                        <button onclick="closeDonateModal()" class="text-white/70 hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-3xl">close</span>
+                        </button>
+                    </div>
+
+                    <!-- Step indicator -->
+                    <div class="flex items-center gap-0 px-6 pt-5 pb-2">
+                        <div class="flex items-center gap-2">
+                            <div id="dot-1"
+                                class="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-white text-xs font-black">
+                                1</div>
+                            <span
+                                class="text-[10px] text-white/60 uppercase tracking-widest font-bold hidden sm:block">Amount</span>
+                        </div>
+                        <div class="flex-1 h-px bg-white/10 mx-2"></div>
+                        <div class="flex items-center gap-2">
+                            <div id="dot-2"
+                                class="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center text-white/40 text-xs font-black">
+                                2</div>
+                            <span
+                                class="text-[10px] text-white/30 uppercase tracking-widest font-bold hidden sm:block">Pay</span>
+                        </div>
+                        <div class="flex-1 h-px bg-white/10 mx-2"></div>
+                        <div class="flex items-center gap-2">
+                            <div id="dot-3"
+                                class="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center text-white/40 text-xs font-black">
+                                3</div>
+                            <span
+                                class="text-[10px] text-white/30 uppercase tracking-widest font-bold hidden sm:block">Confirm</span>
+                        </div>
+                    </div>
+
+                    <div class="p-6">
+
+                        <!-- ── STEP 1: Choose Amount ── -->
+                        <div id="step-1" class="step active">
+                            <div class="mb-7">
+                                <div class="flex justify-between items-end mb-2">
+                                    <div>
+                                        <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Raised
+                                        </p>
+                                        <p class="text-2xl font-black text-white" id="raised-display">₹25,000</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Goal
+                                        </p>
+                                        <p class="text-lg font-bold text-slate-400">₹93,000</p>
+                                    </div>
+                                </div>
+                                <div class="w-full bg-white/10 h-3 rounded-full overflow-hidden">
+                                    <div id="modal-progress"
+                                        class="bg-primary h-full rounded-full transition-all duration-1000 ease-out"
+                                        style="width: 0%"></div>
+                                </div>
+                                <div class="flex justify-between mt-1">
+                                    <p class="text-[10px] text-primary font-bold" id="percent-label">0% funded</p>
+                                    <p class="text-[10px] text-slate-500" id="remaining-label">₹68,000 to go</p>
+                                </div>
+                            </div>
+
+                            <!-- What it funds -->
+                            <div class="grid grid-cols-3 gap-3 mb-7">
+                                <div class="bg-white/5 border border-white/10 rounded-lg p-3 text-center">
+                                    <span
+                                        class="material-symbols-outlined text-primary text-2xl">precision_manufacturing</span>
+                                    <p class="text-[10px] text-slate-400 mt-1 font-medium leading-tight">Car
+                                        Manufacturing</p>
+                                </div>
+                                <div class="bg-white/5 border border-white/10 rounded-lg p-3 text-center">
+                                    <span class="material-symbols-outlined text-primary text-2xl">campaign</span>
+                                    <p class="text-[10px] text-slate-400 mt-1 font-medium leading-tight">Marketing &
+                                        Events</p>
+                                </div>
+                                <div class="bg-white/5 border border-white/10 rounded-lg p-3 text-center">
+                                    <span class="material-symbols-outlined text-primary text-2xl">emoji_events</span>
+                                    <p class="text-[10px] text-slate-400 mt-1 font-medium leading-tight">Competition
+                                        Fees</p>
+                                </div>
+                            </div>
+
+                            <!-- Preset amounts -->
+                            <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold mb-3">Choose an
+                                amount</p>
+                            <div class="grid grid-cols-4 gap-3 mb-4">
+                                <button onclick="selectAmount(100)" data-amount="100"
+                                    class="amount-btn border border-primary/40 hover:border-primary hover:bg-primary/10 text-white py-3 rounded-lg font-black text-sm transition-all">₹100</button>
+                                <button onclick="selectAmount(500)" data-amount="500"
+                                    class="amount-btn border border-primary/40 hover:border-primary hover:bg-primary/10 text-white py-3 rounded-lg font-black text-sm transition-all">₹500</button>
+                                <button onclick="selectAmount(1000)" data-amount="1000"
+                                    class="amount-btn border border-primary/40 hover:border-primary hover:bg-primary/10 text-white py-3 rounded-lg font-black text-sm transition-all">₹1000</button>
+                                <button onclick="selectAmount(2000)" data-amount="2000"
+                                    class="amount-btn border border-primary/40 hover:border-primary hover:bg-primary/10 text-white py-3 rounded-lg font-black text-sm transition-all">₹2000</button>
+                            </div>
+                            <div class="relative mb-6">
+                                <span
+                                    class="absolute left-4 top-1/2 -translate-y-1/2 text-primary font-black text-lg">₹</span>
+                                <input id="custom-amount" type="number" min="1" placeholder="Enter custom amount"
+                                    oninput="onCustomInput()"
+                                    class="w-full bg-white/5 border border-primary/30 focus:border-primary rounded-lg pl-8 pr-4 py-3 text-white placeholder-slate-600 outline-none transition-all text-sm font-medium" />
+                            </div>
+                            <button onclick="goToStep2()"
+                                class="w-full bg-primary hover:bg-red-700 text-white py-4 rounded-lg font-black uppercase italic tracking-widest text-base transition-all hover:scale-[1.02] flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                                <span id="donate-btn-label">Select an amount</span>
+                            </button>
+                            <p class="text-center text-[10px] text-slate-600 mt-3">Pay via UPI — GPay, PhonePe, Paytm &
+                                all UPI apps</p>
+                        </div>
+
+                        <!-- ── STEP 2: Pay via UPI ── -->
+                        <div id="step-2" class="step">
+                            <div class="text-center mb-6">
+                                <p class="text-slate-400 text-sm mb-1">You're donating</p>
+                                <p class="text-primary font-black text-4xl" id="step2-amount">₹0</p>
+                            </div>
+
+                            <!-- Mobile: direct UPI button -->
+                            <div id="mobile-pay-section">
+                                <button onclick="openUpiApp()"
+                                    class="w-full bg-primary hover:bg-red-700 text-white py-4 rounded-lg font-black uppercase italic tracking-widest text-base transition-all flex items-center justify-center gap-2 mb-3">
+                                    <span class="material-symbols-outlined">open_in_new</span>
+                                    Open UPI App
+                                </button>
+                                <p class="text-center text-[10px] text-slate-500 mb-6">Opens GPay, PhonePe, Paytm
+                                    automatically</p>
+                            </div>
+
+                            <!-- Desktop: QR code -->
+                            <div id="desktop-pay-section" class="hidden">
+                                <p
+                                    class="text-[10px] text-slate-500 uppercase tracking-widest font-bold mb-3 text-center">
+                                    Scan with any UPI app</p>
+                                <div class="flex justify-center mb-3">
+                                    <div class="bg-white p-4 rounded-xl shadow-lg inline-block">
+                                        <img src="upi-qr.png" alt="UPI QR" class="w-44 h-44 object-contain"
+                                            onerror="this.onerror=null;this.parentElement.innerHTML='<div style=\'width:176px;height:176px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px\'><span class=\'material-symbols-outlined\' style=\'font-size:3rem;color:#d60505\'>qr_code_2</span><p style=\'font-size:10px;color:#999;text-align:center;padding:0 10px\'>Add upi-qr.png to your folder</p></div>'" />
+                                    </div>
+                                </div>
+                                <p class="text-center text-xs text-slate-500 mb-1" id="step2-upi-id">UPI ID: loading...
+                                </p>
+                                <div class="flex gap-2 justify-center mb-6">
+                                    <span
+                                        class="text-[10px] text-slate-500 bg-white/5 border border-white/10 px-2 py-1 rounded">GPay</span>
+                                    <span
+                                        class="text-[10px] text-slate-500 bg-white/5 border border-white/10 px-2 py-1 rounded">PhonePe</span>
+                                    <span
+                                        class="text-[10px] text-slate-500 bg-white/5 border border-white/10 px-2 py-1 rounded">Paytm</span>
+                                    <span
+                                        class="text-[10px] text-slate-500 bg-white/5 border border-white/10 px-2 py-1 rounded">BHIM</span>
+                                </div>
+                            </div>
+
+                            <button onclick="goToStep3()"
+                                class="w-full bg-white/10 hover:bg-white/20 border border-white/20 text-white py-3 rounded-lg font-black uppercase italic tracking-widest text-sm transition-all flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined text-green-400">check_circle</span>
+                                I've Paid — Submit Proof
+                            </button>
+                            <button onclick="goToStep1()"
+                                class="w-full mt-2 text-slate-600 hover:text-slate-400 text-xs py-2 transition-colors">←
+                                Go back</button>
+                        </div>
+
+                        <!-- ── STEP 3: Upload proof + details ── -->
+                        <div id="step-3" class="step">
+                            <p class="text-white font-bold mb-1">Almost done!</p>
+                            <p class="text-slate-400 text-sm mb-6">Fill in your details and upload your payment
+                                screenshot so we can verify and send you a receipt.</p>
+
+                            <label class="flex flex-col gap-1 mb-4">
+                                <span class="text-[10px] text-primary font-bold uppercase tracking-widest">Your Name
+                                    *</span>
+                                <input id="donor-name" type="text" placeholder="Enter your full name" required
+                                    class="bg-white/5 border border-primary/30 focus:border-primary rounded-lg px-4 py-3 text-white placeholder-slate-600 outline-none transition-all text-sm" />
+                            </label>
+
+                            <label class="flex flex-col gap-1 mb-4">
+                                <span class="text-[10px] text-primary font-bold uppercase tracking-widest">Your Email
+                                    *</span>
+                                <input id="donor-email" type="email" placeholder="you@example.com" required
+                                    class="bg-white/5 border border-primary/30 focus:border-primary rounded-lg px-4 py-3 text-white placeholder-slate-600 outline-none transition-all text-sm" />
+                            </label>
+
+                            <label class="flex flex-col gap-1 mb-6">
+                                <span class="text-[10px] text-primary font-bold uppercase tracking-widest">Payment
+                                    Screenshot *</span>
+                                <div id="upload-zone" class="upload-zone rounded-lg p-6 text-center cursor-pointer"
+                                    onclick="document.getElementById('screenshot-input').click()"
+                                    ondragover="event.preventDefault();this.classList.add('drag-over')"
+                                    ondragleave="this.classList.remove('drag-over')" ondrop="handleDrop(event)">
+                                    <span
+                                        class="material-symbols-outlined text-primary text-3xl mb-2 block">upload_file</span>
+                                    <p class="text-slate-400 text-sm font-medium" id="upload-text">Click or drag your
+                                        screenshot here</p>
+                                    <p class="text-slate-600 text-xs mt-1">PNG, JPG up to 5MB</p>
+                                </div>
+                                <input id="screenshot-input" type="file" accept="image/*" class="hidden"
+                                    onchange="handleFileSelect(event)" />
+                            </label>
+
+                            <button onclick="submitDonation()" id="submit-btn"
+                                class="w-full bg-primary hover:bg-red-700 text-white py-4 rounded-lg font-black uppercase italic tracking-widest text-base transition-all hover:scale-[1.02] flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined" id="submit-icon">send</span>
+                                <span id="submit-label">Send & Get Receipt</span>
+                            </button>
+
+                            <p id="form-error" class="hidden text-primary text-xs text-center mt-3"></p>
+
+                            <button onclick="goToStep2()"
+                                class="w-full mt-2 text-slate-600 hover:text-slate-400 text-xs py-2 transition-colors">←
+                                Go back</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="bg-background-dark py-12 px-6 md:px-20 border-t border-white/5">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-10">
+                <div class="flex flex-col md:flex-row items-center gap-4 opacity-70">
+                    <img alt="Swerve Racing Logo" class="h-6 w-auto grayscale" src="Swerve.png" />
+                    <p
+                        class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-slate-500 text-center md:text-left">
+                        © 2026 Swerve Racing. Swerve to Survive!</p>
+                </div>
+                <div class="flex gap-6">
+                    <a class="text-slate-500 hover:text-primary transition-colors"
+                        href="https://www.instagram.com/swerveracing?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                        target="_blank" rel="noopener noreferrer"><span
+                            class="material-symbols-outlined">camera</span></a>
+                    <a class="text-slate-500 hover:text-primary transition-colors"
+                        href="mailto:swerveracing@gmail.com"><span
+                            class="material-symbols-outlined">alternate_email</span></a>
+                    <a class="text-slate-500 hover:text-primary transition-colors"
+                        href="https://www.linkedin.com/company/swerve-racing-f1/?viewAsMember=true" target="_blank"
+                        rel="noopener noreferrer"><span class="material-symbols-outlined">work</span></a>
+                </div>
+                <div
+                    class="flex flex-wrap justify-center gap-6 md:gap-8 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">
+                    <a class="hover:text-primary" href="#">Privacy</a>
+                    <a class="hover:text-primary" href="#">Terms</a>
+                    <a class="hover:text-primary" href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Success Toast -->
+    <div id="thanks-toast"
+        class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[200] items-center gap-3 bg-green-900 border border-green-500/40 text-green-200 px-6 py-4 rounded-xl text-sm font-bold shadow-2xl">
+        <span class="material-symbols-outlined text-green-400">check_circle</span>
+        Receipt sent! Check your inbox. Thank you for supporting Swerve Racing 🏎️
+    </div>
+
+    <script>
+        // ══════════════════════════════════════════
+        //  CONFIG
+        // ══════════════════════════════════════════
+        const UPI_ID = "9811551193@pthdf";
+        const UPI_NAME = "Swerve Racing";
+        const EMAILJS_PUBLIC_KEY = "e_BXkGY2tL9sw6S5D";
+        const EMAILJS_SERVICE_ID = "service_9iy5jp2";
+        const EMAILJS_TEMPLATE_ID = "template_qj5mp7g";
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz4eK7FnIrNEP6s85fmf81Xq4GVNXKV6jN0osjGTfXA16ihhLncbSGEzfLZ3CGhjBh-Dg/exec";
+
+        // Base amount already collected before any online approvals
+        const BASE_RAISED = 25000;
+        const GOAL = 93000;
+
+        emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+        let selectedAmount = 0;
+        let currentStep = 1;
+        let screenshotB64 = null;
+        let screenshotName = "No screenshot uploaded";
+
+        // ── Progress bar ─────────────────────────
+        // Fetches approved total from Sheets, adds BASE_RAISED, updates UI
+        function updateProgressBar(approvedFromSheets) {
+            const totalRaised = BASE_RAISED + (approvedFromSheets || 0);
+            const pct = Math.min(Math.round((totalRaised / GOAL) * 100), 100);
+            const remaining = Math.max(GOAL - totalRaised, 0);
+
+            document.getElementById('modal-progress').style.width = pct + '%';
+            document.getElementById('percent-label').textContent = pct + '% funded';
+            document.getElementById('raised-display').textContent = '₹' + totalRaised.toLocaleString('en-IN');
+            document.getElementById('remaining-label').textContent = '₹' + remaining.toLocaleString('en-IN') + ' to go';
+        }
+
+        async function loadApprovedTotal() {
+            try {
+                const res = await fetch(SCRIPT_URL + "?action=getApproved");
+                const data = await res.json();
+                updateProgressBar(data.total || 0);
+            } catch (err) {
+                // Fallback: just show base amount
+                updateProgressBar(0);
+                console.warn("Could not load approved total:", err);
+            }
+        }
+
+        // ── Step navigation ──────────────────────
+        function goToStep(n) {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step-' + n).classList.add('active');
+            currentStep = n;
+
+            [1, 2, 3].forEach(i => {
+                const dot = document.getElementById('dot-' + i);
+                if (i < n) {
+                    dot.className = 'w-7 h-7 rounded-full bg-green-600 flex items-center justify-center text-white text-xs font-black';
+                    dot.innerHTML = '✓';
+                } else if (i === n) {
+                    dot.className = 'w-7 h-7 rounded-full bg-primary flex items-center justify-center text-white text-xs font-black';
+                    dot.innerHTML = i;
+                } else {
+                    dot.className = 'w-7 h-7 rounded-full bg-white/10 flex items-center justify-center text-white/40 text-xs font-black';
+                    dot.innerHTML = i;
+                }
+            });
+
+            const titles = ['Support the Mission', 'Make Your Payment', 'Submit Proof'];
+            document.getElementById('modal-title').textContent = titles[n - 1];
+            document.getElementById('modal-card').scrollTop = 0;
+        }
+
+        function goToStep1() { goToStep(1); }
+        function goToStep2() {
+            if (!selectedAmount || selectedAmount < 1) {
+                document.getElementById('custom-amount').focus();
+                return;
+            }
+            document.getElementById('step2-amount').textContent = '₹' + selectedAmount.toLocaleString('en-IN');
+            document.getElementById('step2-upi-id').textContent = 'UPI ID: ' + UPI_ID;
+
+            const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+            document.getElementById('mobile-pay-section').style.display = isMobile ? 'block' : 'none';
+            document.getElementById('desktop-pay-section').style.display = !isMobile ? 'block' : 'none';
+
+            goToStep(2);
+        }
+        function goToStep3() { goToStep(3); }
+
+        // ── UPI deep link ────────────────────────
+        function openUpiApp() {
+            const link = `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent(UPI_NAME)}&am=${selectedAmount}&cu=INR&tn=${encodeURIComponent('Swerve Racing Donation')}`;
+            window.location.href = link;
+        }
+
+        // ── Modal open / close ───────────────────
+        function openDonateModal() {
+            const modal = document.getElementById('donate-modal');
+            const card = document.getElementById('modal-card');
+            goToStep(1);
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                card.classList.remove('scale-95');
+                card.classList.add('scale-100');
+                loadApprovedTotal(); // refresh progress every time modal opens
+            }, 30);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDonateModal() {
+            const modal = document.getElementById('donate-modal');
+            const card = document.getElementById('modal-card');
+            card.classList.remove('scale-100');
+            card.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = '';
+            }, 250);
+        }
+
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDonateModal(); });
+
+        // ── Amount selection ─────────────────────
+        function selectAmount(amt) {
+            selectedAmount = amt;
+            document.getElementById('custom-amount').value = '';
+            document.querySelectorAll('.amount-btn').forEach(btn => {
+                const active = parseInt(btn.dataset.amount) === amt;
+                btn.classList.toggle('bg-primary', active);
+                btn.classList.toggle('border-primary', active);
+                btn.classList.toggle('border-primary/40', !active);
+            });
+            updateDonateLabel();
+        }
+
+        function onCustomInput() {
+            document.querySelectorAll('.amount-btn').forEach(btn => {
+                btn.classList.remove('bg-primary', 'border-primary');
+                btn.classList.add('border-primary/40');
+            });
+            selectedAmount = parseInt(document.getElementById('custom-amount').value) || 0;
+            updateDonateLabel();
+        }
+
+        function updateDonateLabel() {
+            document.getElementById('donate-btn-label').textContent = selectedAmount > 0
+                ? 'Continue — ₹' + selectedAmount.toLocaleString('en-IN')
+                : 'Select an amount';
+        }
+
+        // ── File upload ──────────────────────────
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) processFile(file);
+        }
+
+        function handleDrop(event) {
+            event.preventDefault();
+            document.getElementById('upload-zone').classList.remove('drag-over');
+            const file = event.dataTransfer.files[0];
+            if (file) processFile(file);
+        }
+
+        function processFile(file) {
+            if (file.size > 5 * 1024 * 1024) {
+                document.getElementById('upload-text').textContent = '⚠ File too large (max 5MB)';
+                return;
+            }
+            screenshotName = file.name;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                screenshotB64 = e.target.result;
+                document.getElementById('upload-text').textContent = '✓ ' + file.name;
+                document.getElementById('upload-zone').style.borderColor = '#22c55e';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // ── Submit donation ──────────────────────
+        // Fires BOTH EmailJS receipt AND Google Sheets log in parallel.
+        async function submitDonation() {
+            const name = document.getElementById('donor-name').value.trim();
+            const email = document.getElementById('donor-email').value.trim();
+
+            if (!name) { showError('Please enter your name.'); return; }
+            if (!email || !email.includes('@')) { showError('Please enter a valid email.'); return; }
+            if (!screenshotB64) { showError('Please upload your payment screenshot.'); return; }
+
+            // Lock UI
+            const btn = document.getElementById('submit-btn');
+            const label = document.getElementById('submit-label');
+            const icon = document.getElementById('submit-icon');
+            btn.disabled = true;
+            label.textContent = 'Submitting…';
+            icon.textContent = 'hourglass_top';
+            document.getElementById('form-error').classList.add('hidden');
+
+            const now = new Date();
+            const timestamp = now.toLocaleDateString('en-IN', { day: '2-digit', month: 'long', year: 'numeric' })
+                + ' at ' + now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+
+            // Run both tasks simultaneously
+            const emailTask = emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+                donor_name: name,
+                donor_email: email,
+                amount: '₹' + selectedAmount.toLocaleString('en-IN'),
+                timestamp: timestamp,
+                screenshot_note: `Screenshot uploaded: ${screenshotName} — Please check the CC copy for admin review.`
+            });
+
+            const sheetsTask = fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    amount: selectedAmount,
+                    screenshot: screenshotB64
+                })
+            });
+
+            try {
+                await Promise.all([emailTask, sheetsTask]);
+
+                // Success — close modal and show toast
+                closeDonateModal();
+                const toast = document.getElementById('thanks-toast');
+                toast.classList.remove('hidden');
+                toast.classList.add('flex');
+                setTimeout(() => { toast.classList.add('hidden'); toast.classList.remove('flex'); }, 6000);
+
+                // Reset form state
+                screenshotB64 = null;
+                screenshotName = 'No screenshot uploaded';
+                selectedAmount = 0;
+                document.getElementById('donor-name').value = '';
+                document.getElementById('donor-email').value = '';
+                document.getElementById('upload-text').textContent = 'Click or drag your screenshot here';
+                document.getElementById('upload-zone').style.borderColor = '';
+                document.getElementById('screenshot-input').value = '';
+
+            } catch (err) {
+                showError('Something went wrong. Please email swerveracing@gmail.com directly.');
+                console.error(err);
+            }
+
+            // Restore button
+            btn.disabled = false;
+            label.textContent = 'Send & Get Receipt';
+            icon.textContent = 'send';
+        }
+
+        function showError(msg) {
+            const el = document.getElementById('form-error');
+            el.textContent = msg;
+            el.classList.remove('hidden');
+        }
+
+        // Load progress on page ready
+        document.addEventListener('DOMContentLoaded', loadApprovedTotal);
+    </script>
+
+</body>
+
+</html>

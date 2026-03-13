@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d60505",
+                        "background-light": "#f8f5f5",
+                        "background-dark": "#230f0f",
+                    },
+                    fontFamily: { "display": ["Space Grotesk", "sans-serif"] },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+    <title>About Us | Swerve Racing</title>
+    <style>
+        .skew-slant {
+            transform: skewX(-12deg);
+        }
+
+        .skew-slant-reverse {
+            transform: skewX(12deg);
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+
+            <!-- Header/Navigation -->
+            <header
+                class="sticky top-0 z-50 flex items-center justify-between border-b border-primary/20 bg-background-dark/80 backdrop-blur-md px-4 py-4 md:px-20">
+                <div class="flex items-center gap-4">
+                    <img alt="Swerve Racing Logo" class="h-8 md:h-10 w-auto" src="Swerve.png" />
+                    <h2 class="text-lg md:text-xl font-bold tracking-tighter uppercase italic">Swerve <span
+                            class="text-primary">Racing</span></h2>
+                </div>
+                <button class="md:hidden text-primary"
+                    onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                    <span class="material-symbols-outlined text-3xl">menu</span>
+                </button>
+                <nav class="hidden md:flex flex-1 justify-end gap-10">
+                    <div class="flex items-center gap-6 lg:gap-8">
+                        <a class="text-xs lg:text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors"
+                            href="Home.html">Home</a>
+                        <a class="text-xs lg:text-sm font-bold uppercase tracking-widest text-primary transition-colors"
+                            href="About_Us.html">About Us</a>
+                        <a class="text-xs lg:text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors"
+                            href="Team.html">Meet the Team</a>
+                        <a class="text-xs lg:text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors"
+                            href="Sponsor.html">Sponsor Us</a>
+                        <a class="text-xs lg:text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors"
+                            href="Contact.html">Contact Us</a>
+                    </div>
+                    <a href="https://www.formula1.com/" target="_blank" rel="noopener noreferrer"
+                        class="bg-primary hover:bg-primary/80 text-white px-6 py-2 skew-slant">
+                        <span
+                            class="block skew-slant-reverse text-xs font-black uppercase italic whitespace-nowrap">Live
+                            Race</span>
+                    </a>
+                </nav>
+            </header>
+
+            <!-- Mobile Menu Overlay -->
+            <div class="hidden fixed inset-0 z-[60] bg-background-dark/95 backdrop-blur-xl p-8" id="mobile-menu">
+                <div class="flex justify-end mb-8">
+                    <button class="text-primary"
+                        onclick="document.getElementById('mobile-menu').classList.add('hidden')">
+                        <span class="material-symbols-outlined text-4xl">close</span>
+                    </button>
+                </div>
+                <nav class="flex flex-col gap-6 items-center text-center">
+                    <a class="text-2xl font-black uppercase italic tracking-tighter hover:text-primary transition-colors"
+                        href="Home.html"
+                        onclick="document.getElementById('mobile-menu').classList.add('hidden')">Home</a>
+                    <a class="text-2xl font-black uppercase italic tracking-tighter text-primary" href="About_Us.html"
+                        onclick="document.getElementById('mobile-menu').classList.add('hidden')">About Us</a>
+                    <a class="text-2xl font-black uppercase italic tracking-tighter hover:text-primary transition-colors"
+                        href="Team.html" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Meet
+                        the Team</a>
+                    <a class="text-2xl font-black uppercase italic tracking-tighter hover:text-primary transition-colors"
+                        href="Sponsor.html"
+                        onclick="document.getElementById('mobile-menu').classList.add('hidden')">Sponsor Us</a>
+                    <a class="text-2xl font-black uppercase italic tracking-tighter hover:text-primary transition-colors"
+                        href="Contact.html"
+                        onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact Us</a>
+                    <a href="https://www.formula1.com/" target="_blank" rel="noopener noreferrer"
+                        class="mt-8 bg-primary text-white px-10 py-4 skew-slant w-full text-center block">
+                        <span class="block skew-slant-reverse font-black uppercase italic">Live Race</span>
+                    </a>
+                </nav>
+            </div>
+
+            <main class="flex flex-col flex-1">
+
+                <!-- Hero Section -->
+                <section class="px-6 lg:px-20 py-10">
+                    <div class="relative overflow-hidden rounded-xl bg-slate-800 aspect-square sm:aspect-[16/9] lg:aspect-[21/9] flex flex-col justify-end"
+                        style="background-image: linear-gradient(to top, rgba(35, 15, 15, 0.9), rgba(35, 15, 15, 0.2)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuAbwbdM7Gt1C1h7OXWUyKasP8eMMQvx1ATkEI4WfuIYS7zZkzYNLviV3G63ak-H6XbJCR7DhY3MD6kmPwWCiNPo3UUjctMlEWmKL4F-1wccakiK5zyFINOW4iUpLzFZofOUnVJNj4E7kCkOxzZMCtSRAIcqMZPpDUlrSTFH_HKz8zaVCIO5gW8xJo9tq_Q_7MTzmEnOBV22uEcNjdspQ3LTCvgFiZnCdHrIpcnFTheiUhP_RbQGqTDfYVRiTw6V3-pfOpnhfr_LPQ'); background-size: cover; background-position: center;">
+                        <div class="p-6 md:p-8 lg:p-12">
+                            <span
+                                class="inline-block bg-primary px-3 py-1 rounded text-[10px] md:text-xs font-bold text-white uppercase tracking-widest mb-4">STEM
+                                Racing India</span>
+                            <h1 class="text-3xl md:text-4xl lg:text-6xl font-black text-white leading-tight max-w-2xl">
+                                Designed to Race. Built to Win.</h1>
+                            <p class="mt-4 text-slate-300 text-sm md:text-lg max-w-xl">From a simple sketch to the
+                                national stage — Swerve Racing is redefining what student engineers can achieve in the
+                                F1 in Schools India competition.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Navigation Tabs -->
+                <div class="px-6 lg:px-20 border-b border-primary/10 overflow-hidden">
+                    <div class="flex gap-6 md:gap-8 overflow-x-auto no-scrollbar scroll-smooth">
+                        <a class="border-b-4 border-primary py-4 text-xs md:text-sm font-bold whitespace-nowrap"
+                            href="#history">Our Story</a>
+                        <a class="border-b-4 border-transparent hover:border-primary/50 py-4 text-xs md:text-sm font-bold text-slate-500 dark:text-slate-400 whitespace-nowrap"
+                            href="#challenge">The Challenge</a>
+                        <a class="border-b-4 border-transparent hover:border-primary/50 py-4 text-xs md:text-sm font-bold text-slate-500 dark:text-slate-400 whitespace-nowrap"
+                            href="#engineering">Our Car</a>
+                        <a class="border-b-4 border-transparent hover:border-primary/50 py-4 text-xs md:text-sm font-bold text-slate-500 dark:text-slate-400 whitespace-nowrap"
+                            href="#sustainability">Sustainability</a>
+                    </div>
+                </div>
+
+                <!-- Our Story Section -->
+                <section
+                    class="px-6 lg:px-20 py-12 md:py-16 grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 items-center"
+                    id="history">
+                    <div class="order-2 lg:order-1">
+                        <h2 class="text-primary text-xs md:text-sm font-bold uppercase tracking-widest mb-2">Our Roots
+                        </h2>
+                        <h3 class="text-2xl md:text-3xl font-black mb-6">The Swerve Racing Story</h3>
+                        <div class="space-y-4 text-slate-600 dark:text-slate-300 text-sm md:text-base">
+                            <p>Swerve Racing was born from a shared passion for engineering and speed. We compete in
+                                STEM Racing India — a global motorsports challenge where students design, manufacture,
+                                and race miniature Formula 1 cars using professional CAD software. Our cars are powered
+                                by a single compressed CO2 cartridge and hit speeds over 80 km/hr in under a second.</p>
+                            <p>Our members have already competed at the national level, earning the Research & Design
+                                award, reaching knockout runner-up at regionals, and earning a nomination for the
+                                prestigious Innovation Award at nationals. Every iteration, every late night in the lab,
+                                every simulation run has been building toward one goal: the global stage.</p>
+                        </div>
+                        <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div class="p-4 bg-primary/5 border border-primary/20 rounded-lg text-center sm:text-left">
+                                <div class="text-2xl font-bold text-primary">100+</div>
+                                <div class="text-xs text-slate-500">Teams at Regionals</div>
+                            </div>
+                            <div class="p-4 bg-primary/5 border border-primary/20 rounded-lg text-center sm:text-left">
+                                <div class="text-2xl font-bold text-primary">₹3.5L+</div>
+                                <div class="text-xs text-slate-500">Raised for Sponsors</div>
+                            </div>
+                            <div class="p-4 bg-primary/5 border border-primary/20 rounded-lg text-center sm:text-left">
+                                <div class="text-2xl font-bold text-primary">80+</div>
+                                <div class="text-xs text-slate-500">km/hr in Under 1s</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rounded-xl overflow-hidden shadow-2xl order-1 lg:order-2">
+                        <img alt="Technical drawings of racing components" class="w-full h-64 md:h-full object-cover"
+                            src="car.png" />
+                    </div>
+                </section>
+
+                <!-- The Challenge Section -->
+                <section class="bg-primary/5 px-6 lg:px-20 py-12 md:py-16" id="challenge">
+                    <div class="max-w-4xl mx-auto text-center mb-12">
+                        <h2 class="text-primary text-xs md:text-sm font-bold uppercase tracking-widest mb-2">The
+                            Competition</h2>
+                        <h3 class="text-2xl md:text-3xl font-black mb-4">What is STEM Racing?</h3>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm md:text-base">Students from around the
+                            world design, manufacture, and race miniature Formula 1 cars — but it's far more than just
+                            speed. Teams must manage a brand, secure sponsorships, build portfolios, and present at a
+                            Pit Display to judges, parents, and industry professionals. Regionals alone see up to 100
+                            teams and 500+ participants.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                        <div
+                            class="bg-background-light dark:bg-background-dark p-6 md:p-8 rounded-xl border border-primary/10 shadow-sm group hover:border-primary transition-colors">
+                            <span class="material-symbols-outlined text-4xl text-primary mb-4">speed</span>
+                            <h4 class="text-xl font-bold mb-2">Racing</h4>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">CO2-powered miniature cars launched on
+                                a track, hitting over 80 km/hr in under one second — designed and built entirely by the
+                                team.</p>
+                        </div>
+                        <div
+                            class="bg-background-light dark:bg-background-dark p-6 md:p-8 rounded-xl border border-primary/10 shadow-sm group hover:border-primary transition-colors">
+                            <span
+                                class="material-symbols-outlined text-4xl text-primary mb-4">precision_manufacturing</span>
+                            <h4 class="text-xl font-bold mb-2">Portfolios</h4>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">Three comprehensive documents covering
+                                the full competition journey — engineering decisions, enterprise strategy, and
+                                sustainability commitments.</p>
+                        </div>
+                        <div
+                            class="bg-background-light dark:bg-background-dark p-6 md:p-8 rounded-xl border border-primary/10 shadow-sm group hover:border-primary transition-colors">
+                            <span class="material-symbols-outlined text-4xl text-primary mb-4">leaderboard</span>
+                            <h4 class="text-xl font-bold mb-2">Pit Display & Sponsorships</h4>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">A live display booth where teams
+                                present their car design and team journey. Sponsorships fund the competition in exchange
+                                for physical and digital marketing.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Our Car / Engineering Section -->
+                <section class="px-6 lg:px-20 py-12 md:py-16" id="engineering">
+                    <div class="flex flex-col lg:flex-row gap-10 md:gap-16 items-center">
+                        <div class="w-full lg:w-1/2 order-2 lg:order-1">
+                            <img alt="Engineer working on a 3D model" class="rounded-xl shadow-xl w-full"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvsw48autBIgnQNSd1dEUMnTbeN4Rp3ImllqpfOHLKN1PORkF8_SXVqwMOCjzvnAy5BUz4VZTAk9a5z-4lGfYxAoAIcuMcHrq6o5TR7yrMup_okagIECpGst1hHho7m-WGBlBWOzv_pGBWvYeRD5i2yOvrz54sqQun2IYz7kvp7K0qwfio0ut8oXqTQuucg0WrmJrAn7oWJ3uk3bpFef3eJRo4DzDauphzsDk-Eud-KpFYsOBrBvGMgYzT7KxkRiXMehcBjopfhA" />
+                        </div>
+                        <div class="w-full lg:w-1/2 order-1 lg:order-2">
+                            <h2 class="text-primary text-xs md:text-sm font-bold uppercase tracking-widest mb-2">
+                                Engineering</h2>
+                            <h3 class="text-2xl md:text-3xl font-black mb-6">How We Built Our Car</h3>
+                            <ul class="space-y-6">
+                                <li class="flex gap-4">
+                                    <div class="bg-primary/20 p-2 rounded-full h-fit flex-shrink-0">
+                                        <span
+                                            class="material-symbols-outlined text-primary text-xl">deployed_code</span>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-lg">Rear Wing — Downforce</h5>
+                                        <p class="text-slate-600 dark:text-slate-400 text-sm">Designed using a downward
+                                            airfoil — the inverse of an airplane wing — to generate downforce that keeps
+                                            the car pinned to the track at high speeds.</p>
+                                    </div>
+                                </li>
+                                <li class="flex gap-4">
+                                    <div class="bg-primary/20 p-2 rounded-full h-fit flex-shrink-0">
+                                        <span class="material-symbols-outlined text-primary text-xl">architecture</span>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-lg">Main Body — Drag Reduction</h5>
+                                        <p class="text-slate-600 dark:text-slate-400 text-sm">Curved to minimise drag.
+                                            Side pods divert air sideways and away from the rear wheels using the Coanda
+                                            effect, proven through multiple CFD simulation runs.</p>
+                                    </div>
+                                </li>
+                                <li class="flex gap-4">
+                                    <div class="bg-primary/20 p-2 rounded-full h-fit flex-shrink-0">
+                                        <span class="material-symbols-outlined text-primary text-xl">science</span>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-lg">Wheels & Bearings — Mass Optimisation</h5>
+                                        <p class="text-slate-600 dark:text-slate-400 text-sm">Wheels are hollow to
+                                            reduce mass. Fixed axles carry bearings directly attached to the wheels,
+                                            minimising rotational friction for maximum acceleration.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Sustainability Section -->
+                <section
+                    class="bg-background-dark dark:bg-black text-white px-6 lg:px-20 py-16 md:py-20 relative overflow-hidden"
+                    id="sustainability">
+                    <div
+                        class="absolute top-0 right-0 w-full md:w-1/2 h-full bg-primary/10 blur-[100px] pointer-events-none">
+                    </div>
+                    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 items-center">
+                        <div>
+                            <h2 class="text-primary text-xs md:text-sm font-bold uppercase tracking-widest mb-2">Green
+                                Racing</h2>
+                            <h3 class="text-3xl md:text-4xl font-black mb-6">Sustainability at Swerve</h3>
+                            <p class="text-slate-400 mb-8 leading-relaxed text-sm md:text-base">Speed shouldn't come at
+                                the cost of the planet. Swerve Racing is guided by a Zero Waste philosophy at every
+                                stage of production. Our Sustainability Head brings real-world NGO experience and a deep
+                                commitment to environmental responsibility to everything we build.</p>
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-4 border-l-2 border-primary pl-4">
+                                    <p class="font-medium text-sm">Biodegradable PLA filaments used across all
+                                        prototyping stages.</p>
+                                </div>
+                                <div class="flex items-center gap-4 border-l-2 border-primary pl-4">
+                                    <p class="font-medium text-sm">Partnerships with reputable NGOs — Lotus Petal
+                                        Foundation and Sarvprayag Trust.</p>
+                                </div>
+                                <div class="flex items-center gap-4 border-l-2 border-primary pl-4">
+                                    <p class="font-medium text-sm">Collaborated with 5+ NGOs working toward education,
+                                        empowerment, and a more equal world.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="bg-primary/20 rounded-xl p-6 md:p-8 text-center border border-primary/30">
+                                <span class="material-symbols-outlined text-4xl mb-2 text-primary">eco</span>
+                                <div class="text-xl font-bold">100%</div>
+                                <div class="text-xs text-slate-400">Recyclable Prototypes</div>
+                            </div>
+                            <div class="bg-primary/20 rounded-xl p-6 md:p-8 text-center border border-primary/30">
+                                <span class="material-symbols-outlined text-4xl mb-2 text-primary">recycling</span>
+                                <div class="text-xl font-bold">5+</div>
+                                <div class="text-xs text-slate-400">NGO Partnerships</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CTA Section -->
+                <section class="px-6 lg:px-20 py-16 md:py-20 text-center">
+                    <h3 class="text-2xl md:text-3xl font-black mb-6">Ready to Back a Winning Team?</h3>
+                    <p class="text-slate-600 dark:text-slate-400 max-w-lg mx-auto mb-10 text-sm md:text-base">We are
+                        looking for partners who share our vision — providing your brand with reach across regionals,
+                        nationals, and beyond, at a fraction of what a marketing agency would cost.</p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="Contact.html"
+                            class="bg-primary text-white px-8 py-3 rounded-lg font-bold hover:bg-primary/80 transition-all text-sm md:text-base">Get
+                            in Touch</a>
+                        <a href="https://www.canva.com/design/DAG6LywYjlc/PnR9vqZ7qZCOLirWuYvHxg/view?utm_content=DAG6LywYjlc&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h541910753b"
+                            target="_blank" rel="noopener noreferrer"
+                            class="border border-primary text-primary px-8 py-3 rounded-lg font-bold hover:bg-primary/10 transition-all text-sm md:text-base">Download
+                            Pitch Deck</a>
+                    </div>
+                </section>
+
+            </main>
+
+            <!-- Footer -->
+            <footer class="bg-background-light dark:bg-background-dark border-t border-primary/10 px-6 lg:px-20 py-12">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+                    <div class="flex items-center gap-3">
+                        <div class="size-6 text-primary">
+                            <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M36.7273 44C33.9891 44 31.6043 39.8386 30.3636 33.69C29.123 39.8386 26.7382 44 24 44C21.2618 44 18.877 39.8386 17.6364 33.69C16.3957 39.8386 14.0109 44 11.2727 44C7.25611 44 4 35.0457 4 24C4 12.9543 7.25611 4 11.2727 4C14.0109 4 16.3957 8.16144 17.6364 14.31C18.877 8.16144 21.2618 4 24 4C26.7382 4 29.123 8.16144 30.3636 14.31C31.6043 8.16144 33.9891 4 36.7273 4C40.7439 4 44 12.9543 44 24C44 35.0457 40.7439 44 36.7273 44Z"
+                                    fill="currentColor"></path>
+                            </svg>
+                        </div>
+                        <span class="font-bold tracking-tight text-sm md:text-base">SWERVE RACING</span>
+                    </div>
+                    <div class="flex flex-wrap gap-6 text-slate-500 dark:text-slate-400 text-xs md:text-sm">
+                        <a class="hover:text-primary transition-colors"
+                            href="https://www.instagram.com/swerveracing?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                            target="_blank" rel="noopener noreferrer">Instagram</a>
+                        <a class="hover:text-primary transition-colors"
+                            href="https://www.linkedin.com/company/swerve-racing-f1/?viewAsMember=true" target="_blank"
+                            rel="noopener noreferrer">LinkedIn</a>
+                        <a class="hover:text-primary transition-colors" href="mailto:swerveracing@gmail.com">Email</a>
+                    </div>
+                    <p class="text-[10px] md:text-xs text-slate-500">© 2026 Swerve Racing. Swerve to Survive!</p>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+</body>
+
+</html>
