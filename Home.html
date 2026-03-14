@@ -199,7 +199,7 @@
                         <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors uppercase italic">
                             Regional Rounds 2026 - April</h3>
                         <p class="text-slate-400 text-sm leading-relaxed">Exciting new Stem Racing India 2026-2027
-                            season ahead. See you in April! </p>
+                            season ahead. See you in April!</p>
                     </div>
                     <div class="group cursor-pointer">
                         <div
@@ -214,10 +214,8 @@
                         </div>
                         <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors uppercase italic">
                             Swerve Innovation Lab</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">
-                            Introducing the next generation of aerodynamic carbon fiber aero parts for the 2026-2027
-                            season.
-                        </p>
+                        <p class="text-slate-400 text-sm leading-relaxed">Introducing the next generation of aerodynamic
+                            carbon fiber aero parts for the 2026-2027 season.</p>
                     </div>
                     <div class="group cursor-pointer sm:col-span-2 md:col-span-1">
                         <div
@@ -233,7 +231,7 @@
                         <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors uppercase italic">
                             New Sponsors - Athena Education</h3>
                         <p class="text-slate-400 text-sm leading-relaxed">We are excited to announce our new partnership
-                            with Athena Education!.</p>
+                            with Athena Education!</p>
                     </div>
                 </div>
             </section>
@@ -408,14 +406,14 @@
                             <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold mb-3">Choose an
                                 amount</p>
                             <div class="grid grid-cols-4 gap-3 mb-4">
-                                <button onclick="selectAmount(100)" data-amount="100"
-                                    class="amount-btn border border-primary/40 hover:border-primary hover:bg-primary/10 text-white py-3 rounded-lg font-black text-sm transition-all">₹100</button>
-                                <button onclick="selectAmount(500)" data-amount="500"
-                                    class="amount-btn border border-primary/40 hover:border-primary hover:bg-primary/10 text-white py-3 rounded-lg font-black text-sm transition-all">₹500</button>
                                 <button onclick="selectAmount(1000)" data-amount="1000"
-                                    class="amount-btn border border-primary/40 hover:border-primary hover:bg-primary/10 text-white py-3 rounded-lg font-black text-sm transition-all">₹1000</button>
+                                    class="amount-btn border border-primary/40 hover:border-primary hover:bg-primary/10 text-white py-3 rounded-lg font-black text-sm transition-all">₹1,000</button>
                                 <button onclick="selectAmount(2000)" data-amount="2000"
-                                    class="amount-btn border border-primary/40 hover:border-primary hover:bg-primary/10 text-white py-3 rounded-lg font-black text-sm transition-all">₹2000</button>
+                                    class="amount-btn border border-primary/40 hover:border-primary hover:bg-primary/10 text-white py-3 rounded-lg font-black text-sm transition-all">₹2,000</button>
+                                <button onclick="selectAmount(5000)" data-amount="5000"
+                                    class="amount-btn border border-primary/40 hover:border-primary hover:bg-primary/10 text-white py-3 rounded-lg font-black text-sm transition-all">₹5,000</button>
+                                <button onclick="selectAmount(10000)" data-amount="10000"
+                                    class="amount-btn border border-primary/40 hover:border-primary hover:bg-primary/10 text-white py-3 rounded-lg font-black text-sm transition-all">₹10,000</button>
                             </div>
                             <div class="relative mb-6">
                                 <span
@@ -434,50 +432,59 @@
                         </div>
 
                         <!-- ── STEP 2: Pay via UPI ── -->
+                        <!-- QR + UPI ID always visible on all devices -->
                         <div id="step-2" class="step">
                             <div class="text-center mb-6">
                                 <p class="text-slate-400 text-sm mb-1">You're donating</p>
                                 <p class="text-primary font-black text-4xl" id="step2-amount">₹0</p>
                             </div>
 
-                            <!-- Mobile: direct UPI button -->
-                            <div id="mobile-pay-section">
-                                <button onclick="openUpiApp()"
-                                    class="w-full bg-primary hover:bg-red-700 text-white py-4 rounded-lg font-black uppercase italic tracking-widest text-base transition-all flex items-center justify-center gap-2 mb-3">
-                                    <span class="material-symbols-outlined">open_in_new</span>
-                                    Open UPI App
+                            <!-- QR code — shown on every device -->
+                            <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold mb-3 text-center">
+                                Scan with any UPI app</p>
+                            <div class="flex justify-center mb-3">
+                                <div class="bg-white p-4 rounded-xl shadow-lg inline-block">
+                                    <img src="upi-qr.png" alt="UPI QR" class="w-44 h-44 object-contain"
+                                        onerror="this.onerror=null;this.parentElement.innerHTML='<div style=\'width:176px;height:176px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px\'><span class=\'material-symbols-outlined\' style=\'font-size:3rem;color:#d60505\'>qr_code_2</span><p style=\'font-size:10px;color:#999;text-align:center;padding:0 10px\'>Add upi-qr.png to your folder</p></div>'" />
+                                </div>
+                            </div>
+
+                            <!-- UPI ID with copy button -->
+                            <div class="flex items-center justify-center gap-2 mb-1">
+                                <p class="text-center text-xs text-slate-400 font-mono" id="step2-upi-id">UPI ID:
+                                    loading...</p>
+                                <button onclick="copyUpiId()" class="text-primary hover:text-red-400 transition-colors"
+                                    title="Copy UPI ID">
+                                    <span class="material-symbols-outlined text-base">content_copy</span>
                                 </button>
-                                <p class="text-center text-[10px] text-slate-500 mb-6">Opens GPay, PhonePe, Paytm
+                            </div>
+                            <p id="copy-confirm" class="text-center text-[10px] text-green-400 mb-3 hidden">Copied to
+                                clipboard!</p>
+
+                            <div class="flex gap-2 justify-center mb-5">
+                                <span
+                                    class="text-[10px] text-slate-500 bg-white/5 border border-white/10 px-2 py-1 rounded">GPay</span>
+                                <span
+                                    class="text-[10px] text-slate-500 bg-white/5 border border-white/10 px-2 py-1 rounded">PhonePe</span>
+                                <span
+                                    class="text-[10px] text-slate-500 bg-white/5 border border-white/10 px-2 py-1 rounded">Paytm</span>
+                                <span
+                                    class="text-[10px] text-slate-500 bg-white/5 border border-white/10 px-2 py-1 rounded">BHIM</span>
+                            </div>
+
+                            <!-- Open UPI App — mobile only, shown via JS -->
+                            <div id="mobile-upi-btn" class="hidden mb-3">
+                                <button onclick="openUpiApp()"
+                                    class="w-full bg-primary hover:bg-red-700 text-white py-3 rounded-lg font-black uppercase italic tracking-widest text-sm transition-all flex items-center justify-center gap-2">
+                                    <span class="material-symbols-outlined">open_in_new</span>
+                                    Open UPI App Directly
+                                </button>
+                                <p class="text-center text-[10px] text-slate-500 mt-1">Opens GPay, PhonePe, Paytm
                                     automatically</p>
                             </div>
 
-                            <!-- Desktop: QR code -->
-                            <div id="desktop-pay-section" class="hidden">
-                                <p
-                                    class="text-[10px] text-slate-500 uppercase tracking-widest font-bold mb-3 text-center">
-                                    Scan with any UPI app</p>
-                                <div class="flex justify-center mb-3">
-                                    <div class="bg-white p-4 rounded-xl shadow-lg inline-block">
-                                        <img src="upi-qr.png" alt="UPI QR" class="w-44 h-44 object-contain"
-                                            onerror="this.onerror=null;this.parentElement.innerHTML='<div style=\'width:176px;height:176px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px\'><span class=\'material-symbols-outlined\' style=\'font-size:3rem;color:#d60505\'>qr_code_2</span><p style=\'font-size:10px;color:#999;text-align:center;padding:0 10px\'>Add upi-qr.png to your folder</p></div>'" />
-                                    </div>
-                                </div>
-                                <p class="text-center text-xs text-slate-500 mb-1" id="step2-upi-id">UPI ID: loading...
-                                </p>
-                                <div class="flex gap-2 justify-center mb-6">
-                                    <span
-                                        class="text-[10px] text-slate-500 bg-white/5 border border-white/10 px-2 py-1 rounded">GPay</span>
-                                    <span
-                                        class="text-[10px] text-slate-500 bg-white/5 border border-white/10 px-2 py-1 rounded">PhonePe</span>
-                                    <span
-                                        class="text-[10px] text-slate-500 bg-white/5 border border-white/10 px-2 py-1 rounded">Paytm</span>
-                                    <span
-                                        class="text-[10px] text-slate-500 bg-white/5 border border-white/10 px-2 py-1 rounded">BHIM</span>
-                                </div>
-                            </div>
-
                             <button onclick="goToStep3()"
-                                class="w-full bg-white/10 hover:bg-white/20 border border-white/20 text-white py-3 rounded-lg font-black uppercase italic tracking-widest text-sm transition-all flex items-center justify-center gap-2">
+                                class="w-full bg-white/10 hover:bg-white/20 border border-white/20 text-white py-3 rounded-lg font-black uppercase italic tracking-widest text-sm transition-all flex items-center justify-center gap-2 mt-2">
                                 <span class="material-symbols-outlined text-green-400">check_circle</span>
                                 I've Paid — Submit Proof
                             </button>
@@ -591,7 +598,6 @@
         const EMAILJS_TEMPLATE_ID = "template_qj5mp7g";
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz4eK7FnIrNEP6s85fmf81Xq4GVNXKV6jN0osjGTfXA16ihhLncbSGEzfLZ3CGhjBh-Dg/exec";
 
-        // Base amount already collected before any online approvals
         const BASE_RAISED = 25000;
         const GOAL = 93000;
 
@@ -603,12 +609,10 @@
         let screenshotName = "No screenshot uploaded";
 
         // ── Progress bar ─────────────────────────
-        // Fetches approved total from Sheets, adds BASE_RAISED, updates UI
         function updateProgressBar(approvedFromSheets) {
             const totalRaised = BASE_RAISED + (approvedFromSheets || 0);
             const pct = Math.min(Math.round((totalRaised / GOAL) * 100), 100);
             const remaining = Math.max(GOAL - totalRaised, 0);
-
             document.getElementById('modal-progress').style.width = pct + '%';
             document.getElementById('percent-label').textContent = pct + '% funded';
             document.getElementById('raised-display').textContent = '₹' + totalRaised.toLocaleString('en-IN');
@@ -621,7 +625,6 @@
                 const data = await res.json();
                 updateProgressBar(data.total || 0);
             } catch (err) {
-                // Fallback: just show base amount
                 updateProgressBar(0);
                 console.warn("Could not load approved total:", err);
             }
@@ -653,6 +656,7 @@
         }
 
         function goToStep1() { goToStep(1); }
+
         function goToStep2() {
             if (!selectedAmount || selectedAmount < 1) {
                 document.getElementById('custom-amount').focus();
@@ -661,18 +665,38 @@
             document.getElementById('step2-amount').textContent = '₹' + selectedAmount.toLocaleString('en-IN');
             document.getElementById('step2-upi-id').textContent = 'UPI ID: ' + UPI_ID;
 
+            // Show "Open UPI App" button only on mobile — QR is always visible
             const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-            document.getElementById('mobile-pay-section').style.display = isMobile ? 'block' : 'none';
-            document.getElementById('desktop-pay-section').style.display = !isMobile ? 'block' : 'none';
+            document.getElementById('mobile-upi-btn').classList.toggle('hidden', !isMobile);
 
             goToStep(2);
         }
+
         function goToStep3() { goToStep(3); }
 
         // ── UPI deep link ────────────────────────
+        // Uses intent:// on Android to show a proper UPI chooser (GPay, PhonePe, etc.)
+        // instead of triggering WhatsApp or the browser.
         function openUpiApp() {
-            const link = `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent(UPI_NAME)}&am=${selectedAmount}&cu=INR&tn=${encodeURIComponent('Swerve Racing Donation')}`;
-            window.location.href = link;
+            const params = `pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent(UPI_NAME)}&am=${selectedAmount}&cu=INR&tn=${encodeURIComponent('Swerve Racing Donation')}`;
+            const isAndroid = /Android/i.test(navigator.userAgent);
+
+            if (isAndroid) {
+                // Android intent scheme — opens native UPI app chooser
+                window.location.href = `intent://pay?${params}#Intent;scheme=upi;end`;
+            } else {
+                // iOS / others — standard upi:// scheme
+                window.location.href = `upi://pay?${params}`;
+            }
+        }
+
+        // ── Copy UPI ID ──────────────────────────
+        function copyUpiId() {
+            navigator.clipboard.writeText(UPI_ID).then(() => {
+                const el = document.getElementById('copy-confirm');
+                el.classList.remove('hidden');
+                setTimeout(() => el.classList.add('hidden'), 2000);
+            });
         }
 
         // ── Modal open / close ───────────────────
@@ -684,7 +708,7 @@
             setTimeout(() => {
                 card.classList.remove('scale-95');
                 card.classList.add('scale-100');
-                loadApprovedTotal(); // refresh progress every time modal opens
+                loadApprovedTotal();
             }, 30);
             document.body.style.overflow = 'hidden';
         }
@@ -759,7 +783,6 @@
         }
 
         // ── Submit donation ──────────────────────
-        // Fires BOTH EmailJS receipt AND Google Sheets log in parallel.
         async function submitDonation() {
             const name = document.getElementById('donor-name').value.trim();
             const email = document.getElementById('donor-email').value.trim();
@@ -768,7 +791,6 @@
             if (!email || !email.includes('@')) { showError('Please enter a valid email.'); return; }
             if (!screenshotB64) { showError('Please upload your payment screenshot.'); return; }
 
-            // Lock UI
             const btn = document.getElementById('submit-btn');
             const label = document.getElementById('submit-label');
             const icon = document.getElementById('submit-icon');
@@ -781,7 +803,6 @@
             const timestamp = now.toLocaleDateString('en-IN', { day: '2-digit', month: 'long', year: 'numeric' })
                 + ' at ' + now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
 
-            // Run both tasks simultaneously
             const emailTask = emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
                 donor_name: name,
                 donor_email: email,
@@ -792,25 +813,18 @@
 
             const sheetsTask = fetch(SCRIPT_URL, {
                 method: 'POST',
-                body: JSON.stringify({
-                    name: name,
-                    email: email,
-                    amount: selectedAmount,
-                    screenshot: screenshotB64
-                })
+                body: JSON.stringify({ name, email, amount: selectedAmount, screenshot: screenshotB64 })
             });
 
             try {
                 await Promise.all([emailTask, sheetsTask]);
 
-                // Success — close modal and show toast
                 closeDonateModal();
                 const toast = document.getElementById('thanks-toast');
                 toast.classList.remove('hidden');
                 toast.classList.add('flex');
                 setTimeout(() => { toast.classList.add('hidden'); toast.classList.remove('flex'); }, 6000);
 
-                // Reset form state
                 screenshotB64 = null;
                 screenshotName = 'No screenshot uploaded';
                 selectedAmount = 0;
@@ -825,7 +839,6 @@
                 console.error(err);
             }
 
-            // Restore button
             btn.disabled = false;
             label.textContent = 'Send & Get Receipt';
             icon.textContent = 'send';
@@ -837,7 +850,6 @@
             el.classList.remove('hidden');
         }
 
-        // Load progress on page ready
         document.addEventListener('DOMContentLoaded', loadApprovedTotal);
     </script>
 
