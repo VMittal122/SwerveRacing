@@ -68,6 +68,23 @@
         .upi-app-btn:active {
             transform: scale(0.95);
         }
+
+        /* Nudge banner animation */
+        #nudge-banner {
+            transform: translateY(120%);
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+            opacity: 0;
+        }
+
+        #nudge-banner.nudge-visible {
+            transform: translateY(0%);
+            opacity: 1;
+        }
+
+        #nudge-banner.nudge-hide {
+            transform: translateY(120%);
+            opacity: 0;
+        }
     </style>
 </head>
 
@@ -155,8 +172,8 @@
                     </div>
                     <h1 class="text-5xl md:text-8xl font-black leading-[0.9] tracking-tighter uppercase italic mb-6">
                         Speed into <br />
-                        <span class="text-transparent border-t-2 border-b-2 border-primary py-2"
-                            style="-webkit-text-stroke: 1px #d60505;">The Future</span>
+                        <span class="border-t-2 border-b-2 border-primary py-2"
+                            style="-webkit-text-stroke: 1px #d60505; color: transparent;">The Future</span>
                     </h1>
                     <p class="text-base md:text-xl text-slate-300 max-w-xl mb-10 leading-relaxed drop-shadow-lg">
                         Experience the pinnacle of F1-style performance and innovation. We aren't just racing; we're
@@ -364,7 +381,7 @@
 
                     <div class="p-6">
 
-                        <!-- ── STEP 1: Choose Amount ── -->
+                        <!-- ── STEP 1 ── -->
                         <div id="step-1" class="step active">
                             <div class="mb-7">
                                 <div class="flex justify-between items-end mb-2">
@@ -389,8 +406,6 @@
                                     <p class="text-[10px] text-slate-500" id="remaining-label">₹68,000 to go</p>
                                 </div>
                             </div>
-
-                            <!-- What it funds -->
                             <div class="grid grid-cols-3 gap-3 mb-7">
                                 <div class="bg-white/5 border border-white/10 rounded-lg p-3 text-center">
                                     <span
@@ -409,8 +424,6 @@
                                         Fees</p>
                                 </div>
                             </div>
-
-                            <!-- Preset amounts -->
                             <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold mb-3">Choose an
                                 amount</p>
                             <div class="grid grid-cols-4 gap-3 mb-4">
@@ -439,14 +452,12 @@
                                 all UPI apps</p>
                         </div>
 
-                        <!-- ── STEP 2: Pay via UPI ── -->
+                        <!-- ── STEP 2 ── -->
                         <div id="step-2" class="step">
                             <div class="text-center mb-5">
                                 <p class="text-slate-400 text-sm mb-1">You're donating</p>
                                 <p class="text-primary font-black text-4xl" id="step2-amount">₹0</p>
                             </div>
-
-                            <!-- QR code — always visible on all devices -->
                             <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold mb-3 text-center">
                                 Scan with any UPI app</p>
                             <div class="flex justify-center mb-3">
@@ -455,8 +466,6 @@
                                         onerror="this.onerror=null;this.parentElement.innerHTML='<div style=\'width:160px;height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px\'><span class=\'material-symbols-outlined\' style=\'font-size:3rem;color:#d60505\'>qr_code_2</span><p style=\'font-size:10px;color:#999;text-align:center;padding:0 10px\'>Add upi-qr.png to your folder</p></div>'" />
                                 </div>
                             </div>
-
-                            <!-- UPI ID with copy -->
                             <div class="flex items-center justify-center gap-2 mb-1">
                                 <p class="text-center text-xs text-slate-400 font-mono" id="step2-upi-id">UPI ID:
                                     loading...</p>
@@ -467,63 +476,52 @@
                             </div>
                             <p id="copy-confirm" class="text-center text-[10px] text-green-400 mb-4 hidden">Copied to
                                 clipboard!</p>
-
-                            <!-- ── Mobile UPI app buttons — shown only on mobile via JS ── -->
                             <div id="mobile-upi-section" class="hidden">
                                 <div class="border-t border-white/10 pt-4 mt-2 mb-4">
                                     <p
                                         class="text-[10px] text-slate-500 uppercase tracking-widest font-bold mb-3 text-center">
                                         Or open directly in your app</p>
-
-                                    <!-- Per-app buttons -->
                                     <div class="grid grid-cols-3 gap-2 mb-3">
                                         <button onclick="openSpecificApp('gpay://upi/pay')"
                                             class="upi-app-btn bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/30 text-white py-3 px-2 rounded-xl font-bold text-xs flex flex-col items-center gap-1.5">
                                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Google_Pay_Logo.svg/512px-Google_Pay_Logo.svg.png"
                                                 class="w-7 h-7 object-contain rounded"
-                                                onerror="this.style.display='none'" alt="GPay" />
-                                            GPay
+                                                onerror="this.style.display='none'" alt="GPay" />GPay
                                         </button>
                                         <button onclick="openSpecificApp('phonepe://pay')"
                                             class="upi-app-btn bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/30 text-white py-3 px-2 rounded-xl font-bold text-xs flex flex-col items-center gap-1.5">
                                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/PhonePe_Logo.svg/512px-PhonePe_Logo.svg.png"
                                                 class="w-7 h-7 object-contain rounded"
-                                                onerror="this.style.display='none'" alt="PhonePe" />
-                                            PhonePe
+                                                onerror="this.style.display='none'" alt="PhonePe" />PhonePe
                                         </button>
                                         <button onclick="openSpecificApp('paytmmp://pay')"
                                             class="upi-app-btn bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/30 text-white py-3 px-2 rounded-xl font-bold text-xs flex flex-col items-center gap-1.5">
                                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Paytm_Logo_%28standalone%29.svg/512px-Paytm_Logo_%28standalone%29.svg.png"
                                                 class="w-7 h-7 object-contain rounded"
-                                                onerror="this.style.display='none'" alt="Paytm" />
-                                            Paytm
+                                                onerror="this.style.display='none'" alt="Paytm" />Paytm
                                         </button>
                                         <button onclick="openSpecificApp('bhim://pay')"
                                             class="upi-app-btn bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/30 text-white py-3 px-2 rounded-xl font-bold text-xs flex flex-col items-center gap-1.5">
                                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/BHIM_logo.svg/512px-BHIM_logo.svg.png"
                                                 class="w-7 h-7 object-contain rounded"
-                                                onerror="this.style.display='none'" alt="BHIM" />
-                                            BHIM
+                                                onerror="this.style.display='none'" alt="BHIM" />BHIM
                                         </button>
                                         <button onclick="openSpecificApp('credpay://upi/pay')"
                                             class="upi-app-btn bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/30 text-white py-3 px-2 rounded-xl font-bold text-xs flex flex-col items-center gap-1.5">
                                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/CRED_logo.png/480px-CRED_logo.png"
                                                 class="w-7 h-7 object-contain rounded"
-                                                onerror="this.style.display='none'" alt="CRED" />
-                                            CRED
+                                                onerror="this.style.display='none'" alt="CRED" />CRED
                                         </button>
                                         <button onclick="tryUpiApps()"
                                             class="upi-app-btn bg-primary/20 hover:bg-primary/40 border border-primary/40 text-white py-3 px-2 rounded-xl font-bold text-xs flex flex-col items-center gap-1.5">
                                             <span
-                                                class="material-symbols-outlined text-primary text-2xl">auto_awesome</span>
-                                            Auto
+                                                class="material-symbols-outlined text-primary text-2xl">auto_awesome</span>Auto
                                         </button>
                                     </div>
                                     <p class="text-center text-[10px] text-slate-600">Tap your app — if it doesn't open,
                                         scan the QR above</p>
                                 </div>
                             </div>
-
                             <button onclick="goToStep3()"
                                 class="w-full bg-white/10 hover:bg-white/20 border border-white/20 text-white py-3 rounded-lg font-black uppercase italic tracking-widest text-sm transition-all flex items-center justify-center gap-2">
                                 <span class="material-symbols-outlined text-green-400">check_circle</span>
@@ -534,26 +532,23 @@
                                 Go back</button>
                         </div>
 
-                        <!-- ── STEP 3: Upload proof + details ── -->
+                        <!-- ── STEP 3 ── -->
                         <div id="step-3" class="step">
                             <p class="text-white font-bold mb-1">Almost done!</p>
                             <p class="text-slate-400 text-sm mb-6">Fill in your details and upload your payment
                                 screenshot so we can verify and send you a receipt.</p>
-
                             <label class="flex flex-col gap-1 mb-4">
                                 <span class="text-[10px] text-primary font-bold uppercase tracking-widest">Your Name
                                     *</span>
                                 <input id="donor-name" type="text" placeholder="Enter your full name" required
                                     class="bg-white/5 border border-primary/30 focus:border-primary rounded-lg px-4 py-3 text-white placeholder-slate-600 outline-none transition-all text-sm" />
                             </label>
-
                             <label class="flex flex-col gap-1 mb-4">
                                 <span class="text-[10px] text-primary font-bold uppercase tracking-widest">Your Email
                                     *</span>
                                 <input id="donor-email" type="email" placeholder="you@example.com" required
                                     class="bg-white/5 border border-primary/30 focus:border-primary rounded-lg px-4 py-3 text-white placeholder-slate-600 outline-none transition-all text-sm" />
                             </label>
-
                             <label class="flex flex-col gap-1 mb-6">
                                 <span class="text-[10px] text-primary font-bold uppercase tracking-widest">Payment
                                     Screenshot *</span>
@@ -570,15 +565,12 @@
                                 <input id="screenshot-input" type="file" accept="image/*" class="hidden"
                                     onchange="handleFileSelect(event)" />
                             </label>
-
                             <button onclick="submitDonation()" id="submit-btn"
                                 class="w-full bg-primary hover:bg-red-700 text-white py-4 rounded-lg font-black uppercase italic tracking-widest text-base transition-all hover:scale-[1.02] flex items-center justify-center gap-2">
                                 <span class="material-symbols-outlined" id="submit-icon">send</span>
                                 <span id="submit-label">Send & Get Receipt</span>
                             </button>
-
                             <p id="form-error" class="hidden text-primary text-xs text-center mt-3"></p>
-
                             <button onclick="goToStep2()"
                                 class="w-full mt-2 text-slate-600 hover:text-slate-400 text-xs py-2 transition-colors">←
                                 Go back</button>
@@ -621,6 +613,38 @@
 
     </div>
 
+    <!-- ═══ DONATION NUDGE BANNER ═══ -->
+    <div id="nudge-banner" class="fixed bottom-0 left-0 right-0 z-[150] w-full">
+        <div class="bg-[#1a0808] border-t-2 border-primary shadow-2xl px-4 pt-4 pb-6 md:pb-4">
+            <div class="max-w-3xl mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                <!-- Icon + Text -->
+                <div class="flex items-center gap-4 flex-1">
+                    <div class="bg-primary/20 border border-primary/30 rounded-xl p-3 flex-shrink-0">
+                        <span class="material-symbols-outlined text-primary text-3xl">volunteer_activism</span>
+                    </div>
+                    <div>
+                        <p
+                            class="text-white font-black uppercase italic text-base md:text-lg leading-tight tracking-tight">
+                            Support Swerve Racing 🏎️</p>
+                        <p class="text-slate-400 text-xs md:text-sm mt-1 leading-snug">Help us reach the global stage —
+                            every rupee counts.</p>
+                    </div>
+                </div>
+                <!-- Buttons -->
+                <div class="flex items-center gap-3 w-full sm:w-auto pl-16 sm:pl-0">
+                    <button onclick="nudgeDonate()"
+                        class="flex-1 sm:flex-none bg-primary hover:bg-red-700 text-white text-sm font-black uppercase italic px-6 py-3 skew-slant transition-all hover:scale-105">
+                        <span class="block skew-slant-reverse">Donate Now</span>
+                    </button>
+                    <button onclick="dismissNudge()"
+                        class="flex-1 sm:flex-none border border-white/20 hover:border-white/40 text-slate-400 hover:text-white text-sm font-bold px-6 py-3 transition-all">
+                        Maybe Later
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Success Toast -->
     <div id="thanks-toast"
         class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[200] items-center gap-3 bg-green-900 border border-green-500/40 text-green-200 px-6 py-4 rounded-xl text-sm font-bold shadow-2xl">
@@ -629,9 +653,6 @@
     </div>
 
     <script>
-        // ══════════════════════════════════════════
-        //  CONFIG
-        // ══════════════════════════════════════════
         const UPI_ID = "9811551193@pthdf";
         const UPI_NAME = "Swerve Racing";
         const EMAILJS_PUBLIC_KEY = "e_BXkGY2tL9sw6S5D";
@@ -648,6 +669,28 @@
         let currentStep = 1;
         let screenshotB64 = null;
         let screenshotName = "No screenshot uploaded";
+
+        // ── Nudge banner ─────────────────────────
+        const NUDGE_KEY = 'swerve_nudge_seen';
+
+        function showNudge() {
+            if (sessionStorage.getItem(NUDGE_KEY)) return;
+            setTimeout(() => {
+                document.getElementById('nudge-banner').classList.add('nudge-visible');
+            }, 3000);
+        }
+
+        function dismissNudge() {
+            const banner = document.getElementById('nudge-banner');
+            banner.classList.remove('nudge-visible');
+            banner.classList.add('nudge-hide');
+            sessionStorage.setItem(NUDGE_KEY, '1');
+        }
+
+        function nudgeDonate() {
+            dismissNudge();
+            openDonateModal();
+        }
 
         // ── Progress bar ─────────────────────────
         function updateProgressBar(approvedFromSheets) {
@@ -675,7 +718,6 @@
             document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
             document.getElementById('step-' + n).classList.add('active');
             currentStep = n;
-
             [1, 2, 3].forEach(i => {
                 const dot = document.getElementById('dot-' + i);
                 if (i < n) {
@@ -689,7 +731,6 @@
                     dot.innerHTML = i;
                 }
             });
-
             const titles = ['Support the Mission', 'Make Your Payment', 'Submit Proof'];
             document.getElementById('modal-title').textContent = titles[n - 1];
             document.getElementById('modal-card').scrollTop = 0;
@@ -704,70 +745,48 @@
             }
             document.getElementById('step2-amount').textContent = '₹' + selectedAmount.toLocaleString('en-IN');
             document.getElementById('step2-upi-id').textContent = 'UPI ID: ' + UPI_ID;
-
-            // Show app buttons only on mobile
             const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
             document.getElementById('mobile-upi-section').classList.toggle('hidden', !isMobile);
-
             goToStep(2);
         }
 
         function goToStep3() { goToStep(3); }
 
-        // ── Open a specific UPI app by its custom scheme ──
+        // ── UPI app openers ──────────────────────
         function openSpecificApp(scheme) {
             const params = `pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent(UPI_NAME)}&am=${selectedAmount}&cu=INR&tn=${encodeURIComponent('Swerve Racing Donation')}`;
             window.location.href = `${scheme}?${params}`;
         }
 
-        // ── Auto-detect: try each app in sequence ──
-        // Uses iframe trick + visibilitychange to detect if app opened
         function tryUpiApps() {
             const params = `pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent(UPI_NAME)}&am=${selectedAmount}&cu=INR&tn=${encodeURIComponent('Swerve Racing Donation')}`;
-
             const apps = [
                 `gpay://upi/pay?${params}`,
                 `phonepe://pay?${params}`,
                 `paytmmp://pay?${params}`,
                 `credpay://upi/pay?${params}`,
                 `bhim://pay?${params}`,
-                `upi://pay?${params}`,       // generic fallback
+                `upi://pay?${params}`,
             ];
-
             let index = 0;
-
             function tryNext() {
                 if (index >= apps.length) return;
                 const url = apps[index++];
-
-                // Use a hidden iframe to fire the scheme without navigating away
                 const iframe = document.createElement('iframe');
                 iframe.style.cssText = 'display:none;width:0;height:0;border:0;';
                 document.body.appendChild(iframe);
-
                 let appOpened = false;
-
-                // If the app opens, the page becomes hidden
                 const onVisibilityChange = () => {
-                    if (document.hidden) {
-                        appOpened = true;
-                        document.removeEventListener('visibilitychange', onVisibilityChange);
-                    }
+                    if (document.hidden) { appOpened = true; document.removeEventListener('visibilitychange', onVisibilityChange); }
                 };
                 document.addEventListener('visibilitychange', onVisibilityChange);
-
                 try { iframe.contentWindow.location.href = url; } catch (e) { }
-
                 setTimeout(() => {
                     document.body.removeChild(iframe);
                     document.removeEventListener('visibilitychange', onVisibilityChange);
-                    // If page is still visible the app didn't open — try next
-                    if (!appOpened && !document.hidden) {
-                        tryNext();
-                    }
+                    if (!appOpened && !document.hidden) tryNext();
                 }, 700);
             }
-
             tryNext();
         }
 
@@ -867,7 +886,6 @@
         async function submitDonation() {
             const name = document.getElementById('donor-name').value.trim();
             const email = document.getElementById('donor-email').value.trim();
-
             if (!name) { showError('Please enter your name.'); return; }
             if (!email || !email.includes('@')) { showError('Please enter a valid email.'); return; }
             if (!screenshotB64) { showError('Please upload your payment screenshot.'); return; }
@@ -875,9 +893,7 @@
             const btn = document.getElementById('submit-btn');
             const label = document.getElementById('submit-label');
             const icon = document.getElementById('submit-icon');
-            btn.disabled = true;
-            label.textContent = 'Submitting…';
-            icon.textContent = 'hourglass_top';
+            btn.disabled = true; label.textContent = 'Submitting…'; icon.textContent = 'hourglass_top';
             document.getElementById('form-error').classList.add('hidden');
 
             const now = new Date();
@@ -885,10 +901,9 @@
                 + ' at ' + now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
 
             const emailTask = emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-                donor_name: name,
-                donor_email: email,
+                donor_name: name, donor_email: email,
                 amount: '₹' + selectedAmount.toLocaleString('en-IN'),
-                timestamp: timestamp,
+                timestamp,
                 screenshot_note: `Screenshot uploaded: ${screenshotName} — Please check the CC copy for admin review.`
             });
 
@@ -899,30 +914,22 @@
 
             try {
                 await Promise.all([emailTask, sheetsTask]);
-
                 closeDonateModal();
                 const toast = document.getElementById('thanks-toast');
-                toast.classList.remove('hidden');
-                toast.classList.add('flex');
+                toast.classList.remove('hidden'); toast.classList.add('flex');
                 setTimeout(() => { toast.classList.add('hidden'); toast.classList.remove('flex'); }, 6000);
-
-                screenshotB64 = null;
-                screenshotName = 'No screenshot uploaded';
-                selectedAmount = 0;
+                screenshotB64 = null; screenshotName = 'No screenshot uploaded'; selectedAmount = 0;
                 document.getElementById('donor-name').value = '';
                 document.getElementById('donor-email').value = '';
                 document.getElementById('upload-text').textContent = 'Click or drag your screenshot here';
                 document.getElementById('upload-zone').style.borderColor = '';
                 document.getElementById('screenshot-input').value = '';
-
             } catch (err) {
                 showError('Something went wrong. Please email swerveracing@gmail.com directly.');
                 console.error(err);
             }
 
-            btn.disabled = false;
-            label.textContent = 'Send & Get Receipt';
-            icon.textContent = 'send';
+            btn.disabled = false; label.textContent = 'Send & Get Receipt'; icon.textContent = 'send';
         }
 
         function showError(msg) {
@@ -931,7 +938,11 @@
             el.classList.remove('hidden');
         }
 
-        document.addEventListener('DOMContentLoaded', loadApprovedTotal);
+        // ── Init ─────────────────────────────────
+        document.addEventListener('DOMContentLoaded', () => {
+            loadApprovedTotal();
+            showNudge();
+        });
     </script>
 
 </body>
