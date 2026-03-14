@@ -61,15 +61,6 @@
             display: block;
         }
 
-        .upi-app-btn {
-            transition: all 0.15s;
-        }
-
-        .upi-app-btn:active {
-            transform: scale(0.95);
-        }
-
-        /* Nudge banner animation */
         #nudge-banner {
             transform: translateY(120%);
             transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
@@ -458,14 +449,27 @@
                                 <p class="text-slate-400 text-sm mb-1">You're donating</p>
                                 <p class="text-primary font-black text-4xl" id="step2-amount">₹0</p>
                             </div>
+
+                            <!-- QR Code -->
                             <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold mb-3 text-center">
                                 Scan with any UPI app</p>
                             <div class="flex justify-center mb-3">
                                 <div class="bg-white p-4 rounded-xl shadow-lg inline-block">
-                                    <img src="upi-qr.png" alt="UPI QR" class="w-40 h-40 object-contain"
-                                        onerror="this.onerror=null;this.parentElement.innerHTML='<div style=\'width:160px;height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px\'><span class=\'material-symbols-outlined\' style=\'font-size:3rem;color:#d60505\'>qr_code_2</span><p style=\'font-size:10px;color:#999;text-align:center;padding:0 10px\'>Add upi-qr.png to your folder</p></div>'" />
+                                    <img src="upi-qr.png" alt="UPI QR" class="w-44 h-44 object-contain"
+                                        onerror="this.onerror=null;this.parentElement.innerHTML='<div style=\'width:176px;height:176px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px\'><span class=\'material-symbols-outlined\' style=\'font-size:3rem;color:#d60505\'>qr_code_2</span><p style=\'font-size:10px;color:#999;text-align:center;padding:0 10px\'>Add upi-qr.png to your folder</p></div>'" />
                                 </div>
                             </div>
+
+                            <!-- Save QR to device -->
+                            <div class="flex justify-center mb-4">
+                                <a href="upi-qr.png" download="SwerveRacing-UPI-QR.png"
+                                    class="flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40 text-white text-xs font-bold px-5 py-2.5 rounded-lg transition-all">
+                                    <span class="material-symbols-outlined text-base">download</span>
+                                    Save QR to device
+                                </a>
+                            </div>
+
+                            <!-- UPI ID with copy -->
                             <div class="flex items-center justify-center gap-2 mb-1">
                                 <p class="text-center text-xs text-slate-400 font-mono" id="step2-upi-id">UPI ID:
                                     loading...</p>
@@ -474,54 +478,40 @@
                                     <span class="material-symbols-outlined text-base">content_copy</span>
                                 </button>
                             </div>
-                            <p id="copy-confirm" class="text-center text-[10px] text-green-400 mb-4 hidden">Copied to
+                            <p id="copy-confirm" class="text-center text-[10px] text-green-400 mb-5 hidden">Copied to
                                 clipboard!</p>
-                            <div id="mobile-upi-section" class="hidden">
-                                <div class="border-t border-white/10 pt-4 mt-2 mb-4">
-                                    <p
-                                        class="text-[10px] text-slate-500 uppercase tracking-widest font-bold mb-3 text-center">
-                                        Or open directly in your app</p>
-                                    <div class="grid grid-cols-3 gap-2 mb-3">
-                                        <button onclick="openSpecificApp('gpay://upi/pay')"
-                                            class="upi-app-btn bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/30 text-white py-3 px-2 rounded-xl font-bold text-xs flex flex-col items-center gap-1.5">
-                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Google_Pay_Logo.svg/512px-Google_Pay_Logo.svg.png"
-                                                class="w-7 h-7 object-contain rounded"
-                                                onerror="this.style.display='none'" alt="GPay" />GPay
-                                        </button>
-                                        <button onclick="openSpecificApp('phonepe://pay')"
-                                            class="upi-app-btn bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/30 text-white py-3 px-2 rounded-xl font-bold text-xs flex flex-col items-center gap-1.5">
-                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/PhonePe_Logo.svg/512px-PhonePe_Logo.svg.png"
-                                                class="w-7 h-7 object-contain rounded"
-                                                onerror="this.style.display='none'" alt="PhonePe" />PhonePe
-                                        </button>
-                                        <button onclick="openSpecificApp('paytmmp://pay')"
-                                            class="upi-app-btn bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/30 text-white py-3 px-2 rounded-xl font-bold text-xs flex flex-col items-center gap-1.5">
-                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Paytm_Logo_%28standalone%29.svg/512px-Paytm_Logo_%28standalone%29.svg.png"
-                                                class="w-7 h-7 object-contain rounded"
-                                                onerror="this.style.display='none'" alt="Paytm" />Paytm
-                                        </button>
-                                        <button onclick="openSpecificApp('bhim://pay')"
-                                            class="upi-app-btn bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/30 text-white py-3 px-2 rounded-xl font-bold text-xs flex flex-col items-center gap-1.5">
-                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/BHIM_logo.svg/512px-BHIM_logo.svg.png"
-                                                class="w-7 h-7 object-contain rounded"
-                                                onerror="this.style.display='none'" alt="BHIM" />BHIM
-                                        </button>
-                                        <button onclick="openSpecificApp('credpay://upi/pay')"
-                                            class="upi-app-btn bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/30 text-white py-3 px-2 rounded-xl font-bold text-xs flex flex-col items-center gap-1.5">
-                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/CRED_logo.png/480px-CRED_logo.png"
-                                                class="w-7 h-7 object-contain rounded"
-                                                onerror="this.style.display='none'" alt="CRED" />CRED
-                                        </button>
-                                        <button onclick="tryUpiApps()"
-                                            class="upi-app-btn bg-primary/20 hover:bg-primary/40 border border-primary/40 text-white py-3 px-2 rounded-xl font-bold text-xs flex flex-col items-center gap-1.5">
-                                            <span
-                                                class="material-symbols-outlined text-primary text-2xl">auto_awesome</span>Auto
-                                        </button>
+
+                            <!-- Step by step instructions -->
+                            <div class="bg-white/5 border border-white/10 rounded-xl p-4 mb-5">
+                                <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold mb-3">How to
+                                    pay</p>
+                                <div class="space-y-3">
+                                    <div class="flex items-start gap-3">
+                                        <span class="text-primary font-black text-sm flex-shrink-0">1</span>
+                                        <p class="text-slate-300 text-xs leading-relaxed">Open GPay, PhonePe, Paytm or
+                                            any UPI app</p>
                                     </div>
-                                    <p class="text-center text-[10px] text-slate-600">Tap your app — if it doesn't open,
-                                        scan the QR above</p>
+                                    <div class="flex items-start gap-3">
+                                        <span class="text-primary font-black text-sm flex-shrink-0">2</span>
+                                        <p class="text-slate-300 text-xs leading-relaxed">Tap <span
+                                                class="font-bold text-white">Scan QR</span> and point your camera at the
+                                            code above — or save the QR and pick it from your gallery</p>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <span class="text-primary font-black text-sm flex-shrink-0">3</span>
+                                        <p class="text-slate-300 text-xs leading-relaxed">Confirm the amount is <span
+                                                class="font-bold text-primary" id="step2-amount-hint">₹0</span> and
+                                            complete the payment</p>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <span class="text-primary font-black text-sm flex-shrink-0">4</span>
+                                        <p class="text-slate-300 text-xs leading-relaxed">Come back here and tap <span
+                                                class="font-bold text-white">I've Paid</span> to submit your screenshot
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
+
                             <button onclick="goToStep3()"
                                 class="w-full bg-white/10 hover:bg-white/20 border border-white/20 text-white py-3 rounded-lg font-black uppercase italic tracking-widest text-sm transition-all flex items-center justify-center gap-2">
                                 <span class="material-symbols-outlined text-green-400">check_circle</span>
@@ -617,7 +607,6 @@
     <div id="nudge-banner" class="fixed bottom-0 left-0 right-0 z-[150] w-full">
         <div class="bg-[#1a0808] border-t-2 border-primary shadow-2xl px-4 pt-4 pb-6 md:pb-4">
             <div class="max-w-3xl mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                <!-- Icon + Text -->
                 <div class="flex items-center gap-4 flex-1">
                     <div class="bg-primary/20 border border-primary/30 rounded-xl p-3 flex-shrink-0">
                         <span class="material-symbols-outlined text-primary text-3xl">volunteer_activism</span>
@@ -630,7 +619,6 @@
                             every rupee counts.</p>
                     </div>
                 </div>
-                <!-- Buttons -->
                 <div class="flex items-center gap-3 w-full sm:w-auto pl-16 sm:pl-0">
                     <button onclick="nudgeDonate()"
                         class="flex-1 sm:flex-none bg-primary hover:bg-red-700 text-white text-sm font-black uppercase italic px-6 py-3 skew-slant transition-all hover:scale-105">
@@ -653,8 +641,8 @@
     </div>
 
     <script>
-        const UPI_ID = "9811551193@pthdfc";
-        const UPI_NAME = "Shweta Agarwal";
+        const UPI_ID = "9811551193@pthdf";
+        const UPI_NAME = "Swerve Racing";
         const EMAILJS_PUBLIC_KEY = "e_BXkGY2tL9sw6S5D";
         const EMAILJS_SERVICE_ID = "service_9iy5jp2";
         const EMAILJS_TEMPLATE_ID = "template_qj5mp7g";
@@ -743,52 +731,14 @@
                 document.getElementById('custom-amount').focus();
                 return;
             }
-            document.getElementById('step2-amount').textContent = '₹' + selectedAmount.toLocaleString('en-IN');
+            const formatted = '₹' + selectedAmount.toLocaleString('en-IN');
+            document.getElementById('step2-amount').textContent = formatted;
+            document.getElementById('step2-amount-hint').textContent = formatted;
             document.getElementById('step2-upi-id').textContent = 'UPI ID: ' + UPI_ID;
-            const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-            document.getElementById('mobile-upi-section').classList.toggle('hidden', !isMobile);
             goToStep(2);
         }
 
         function goToStep3() { goToStep(3); }
-
-        // ── UPI app openers ──────────────────────
-        function openSpecificApp(scheme) {
-            const params = `pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent(UPI_NAME)}&am=${selectedAmount}&cu=INR&tn=${encodeURIComponent('Swerve Racing Donation')}`;
-            window.location.href = `${scheme}?${params}`;
-        }
-
-        function tryUpiApps() {
-            const params = `pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent(UPI_NAME)}&am=${selectedAmount}&cu=INR&tn=${encodeURIComponent('Swerve Racing Donation')}`;
-            const apps = [
-                `gpay://upi/pay?${params}`,
-                `phonepe://pay?${params}`,
-                `paytmmp://pay?${params}`,
-                `credpay://upi/pay?${params}`,
-                `bhim://pay?${params}`,
-                `upi://pay?${params}`,
-            ];
-            let index = 0;
-            function tryNext() {
-                if (index >= apps.length) return;
-                const url = apps[index++];
-                const iframe = document.createElement('iframe');
-                iframe.style.cssText = 'display:none;width:0;height:0;border:0;';
-                document.body.appendChild(iframe);
-                let appOpened = false;
-                const onVisibilityChange = () => {
-                    if (document.hidden) { appOpened = true; document.removeEventListener('visibilitychange', onVisibilityChange); }
-                };
-                document.addEventListener('visibilitychange', onVisibilityChange);
-                try { iframe.contentWindow.location.href = url; } catch (e) { }
-                setTimeout(() => {
-                    document.body.removeChild(iframe);
-                    document.removeEventListener('visibilitychange', onVisibilityChange);
-                    if (!appOpened && !document.hidden) tryNext();
-                }, 700);
-            }
-            tryNext();
-        }
 
         // ── Copy UPI ID ──────────────────────────
         function copyUpiId() {
@@ -901,7 +851,8 @@
                 + ' at ' + now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
 
             const emailTask = emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-                donor_name: name, donor_email: email,
+                donor_name: name,
+                donor_email: email,
                 amount: '₹' + selectedAmount.toLocaleString('en-IN'),
                 timestamp,
                 screenshot_note: `Screenshot uploaded: ${screenshotName} — Please check the CC copy for admin review.`
